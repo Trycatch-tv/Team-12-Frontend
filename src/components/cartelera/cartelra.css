@@ -1,0 +1,50 @@
+.containerListCartelera {
+  margin: 100px 15%;
+}
+.searchSection {
+  width: 100%;
+  height: 40px;
+  /* background-color: #3f0991; */
+  position: relative;
+  display: flex;
+  flex-direction: row;
+}
+.searchInput {
+  width: 90%;
+  height: 35px;
+  position: absolute;
+  bottom: 0;
+}
+.selectInput {
+  width: 10%;
+  height: 35px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+.bannerSection {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  /* grid-template-columns: repeat(4, auto);
+  grid-auto-columns: auto; */
+  grid-template-rows: auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 50px;
+  padding-top: 20px;
+}
+.marcoBanner {
+  width: 250px;
+  height: 380px;
+  margin-bottom: 50px;
+}
+
+.description > p, .description > span{
+      font-size: 12px;
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.des{
+      margin-right: 5px;
+}

@@ -1,0 +1,12 @@
+.navContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  background-color: #3f0991;
+}
+
+.logo > img {
+  width: 130px;
+  margin: 15px 0 15px 50px;
+}

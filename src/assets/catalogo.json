@@ -1,0 +1,312 @@
+[
+      {
+            "titulo": "6 Underground",
+            "genero":["acción","suspenso"],
+            "año":"2022",
+            "director":"Michael Bay",
+            "calificacion":"E",
+            "reparto":"Ryan Reynolds, Mélanie Laurent, Manuel Garcia-Rulfo, Adria Arjona, Corey Hawkins, Ben Hardy, Dave Franco",
+            "banner":"/public/img/cartelera/6-underground.jpg",
+            "sinopsis":"Cuatro años después de presenciar los horrores de un régimen brutal en la nación del Medio Oriente de Turgistán, un multimillonario y filántropo estadounidense no identificado, que hizo su fortuna inventando imanes de neodimio, finge su propia muerte para formar un escuadrón de vigilantes anónimos cuyo fin es derrotar a criminales y terroristas que los gobiernos no tocarán. Ahora conocido como 'Uno', recluta a otras cinco personas para abandonar su pasado y unirse a su causa como 'fantasmas': Dos, una espía; Tres, un asesino a sueldo; Cuatro, un corredor de parkour y ladrón; Cinco, una doctora; y Seis, un conductor."
+      },
+      {
+            "titulo": "Aladin",
+            "genero":["animada","aventura","fantasia"],
+            "año":"2019",
+            "director":"Guy Ritchie",
+            "calificacion":"E",
+            "reparto":"Mena Massoud, Naomi Scott, Will Smith, Marwan Kenzari Navid Negahban ,Nasim Pedrad, Alan Tudyk, Frank Welker, Billy Magnussen, Numan Acar",
+            "banner":"/public/img/cartelera/aladin.jpg",
+            "sinopsis":"En un barco pesquero, un pescador decide contarle a sus hijos la historia de Aladdín, la princesa Jasmín y la lámpara mágica mientras viajan hacia el reino de Agrabah. Aladdín (Mena Massoud) es un joven ladrón de buen corazón que vive en la ciudad árabe de Agrabah junto a su mono mascota Abu."
+      },
+      {
+            "titulo": "Anab",
+            "genero":["terror","suspenso"],
+            "año":"2017",
+            "director":"David F. Sandberg",
+            "calificacion":"+18",
+            "reparto":"Stephanie Sigman, Talitha Bateman, Lulu Wilson, Anthony LaPaglia, Miranda Otto",
+            "banner":"/public/img/cartelera/anabelle.jpg",
+            "sinopsis":"En 1943, el fabricante de muñecas Samuel Mullins (Anthony LaPaglia) está elaborando un nuevo trabajo: la muñeca que más tarde sería conocida como Annabelle. Mientras trabaja, Samuel recibe una pequeña nota de su hija Annabelle, apodada Bee, para jugar al escondite. Samuel la encuentra y comienza a hacerle cosquillas, unido con su esposa, Esther."
+      },
+      {
+            "titulo": "Ant-Man and Wasp",
+            "genero":["aventura","acción"],
+            "año":"2023",
+            "director":"Peyton Reed",
+            "calificacion":"+10",
+            "reparto":"Paul Rudd, Evangeline Lilly, Michael Peña, Walton Goggins, Bobby Cannavale, Judy Greer, Tip T.I. Harris,David, Dastmalchian,Hannah John-Kamen, Abby Ryder Fortson, Randall Park, Michelle Pfeiffer, Laurence Fishburne, Michael Douglas",
+            "banner":"/public/img/cartelera/ant-man-y-wast.jpg",
+            "sinopsis":"Dos años después de que Scott Lang fuera puesto bajo arresto domiciliario debido a su participación con los Vengadores, en violación con los Acuerdos de Sokovia, Hank Pym y su hija Hope van Dyne logran abrir brevemente un túnel hacia el reino cuántico. Creen que la esposa de Pym, Janet van Dyne, podría quedar atrapada allí después de encogerse a niveles subatómicos en 1987. Cuando previamente había visitado el reino cuántico, Lang se había enredado cuánticamente con Janet sin saberlo, y ahora recibe un mensaje aparente de ella."
+      },
+      {
+            "titulo": "Avengers End Game",
+            "genero":["aventura","acción"],
+            "año":"2019",
+            "director":"Anthony y Joe Russo",
+            "calificacion":"+4",
+            "reparto":"Scarlett Johansson, Robert Downey Jr, Chris Evans, Mark Ruffalo, Chris Hemsworth, Jeremy Renner, Don Cheadle, Paul Rudd, Brie Larson, Karen Gillan, Danai Gurira, Benedict Wong, Jon Favreau, Bradley Cooper, Gwyneth Paltrow, Josh Brolin",
+            "banner":"/public/img/cartelera/avengers-end-game.jpg",
+            "sinopsis":"Días después del Chasquido de Thanos, Tony Stark y Nebula quedan a la deriva en el espacio exterior. Ambos son rescatados por Carol Danvers y se reúnen con los Vengadores―Steve Rogers, Thor, Bruce Banner, Natasha Romanoff y James Rhodes—y Rocket en el Complejo de los Vengadores. Por otro lado y con la ayuda de Nebula, los héroes consiguen localizar a Thanos en un planeta deshabitado, donde estos planean utilizar las Gemas del Infinito para revertir los efectos del chasquido. Al llegar al lugar, los héroes rápidamente someten al malvado titán con suma facilidad, pero pronto descubren que Thanos ya se había anticipado a estos eventos y dos días antes de su llegada, había destruido las gemas para evitar que cualquiera pudiera revertir los efectos que este provocó y que hacer eso por poco lo mata. Por otro lado un enfurecido Thor, decide decapitar brutalmente a Thanos con su Stormbreaker, admitiendo que no tenía caso mantener con vida al malvado titán si este ya no tenía las gemas en su poder."
+      },
+      {
+            "titulo": "The Avengers",
+            "genero":["aventura","acción"],
+            "año":"",
+            "director":"",
+            "calificacion":"",
+            "reparto":"",
+            "banner":"/public/img/cartelera/avengers.jpg",
+            "sinopsis":""
+      },
+      {
+            "titulo": "Civil War",
+            "genero":["aventura","acción"],
+            "año":"",
+            "director":"",
+            "calificacion":"",
+            "reparto":"",
+            "banner":"/public/img/cartelera/avengers-civil-war.jpg",
+            "sinopsis":""
+      },
+      {
+            "titulo": "Black Widow",
+            "genero":["accion","aventura"],
+            "año":"",
+            "director":"",
+            "calificacion":"",
+            "reparto":"",
+            "banner":"/public/img/cartelera/black-widow.jpg",
+            "sinopsis":""
+      },
+      {
+            "titulo": "Blade Trinity",
+            "genero":["acción","suspenso"],
+            "año":"",
+            "director":"",
+            "calificacion":"",
+            "reparto":"",
+            "banner":"/public/img/cartelera/blade-trinity.jpg",
+            "sinopsis":""
+      },
+      {
+            "titulo": "Capitan America",
+            "genero":["acción",""],
+            "año":"",
+            "director":"",
+            "calificacion":"",
+            "reparto":"",
+            "banner":"/public/img/cartelera/capitan-america.jpg",
+            "sinopsis":""
+      },
+      {
+            "titulo": "Coco",
+            "genero":["aventura","animada"],
+            "año":"",
+            "director":"",
+            "calificacion":"",
+            "reparto":"",
+            "banner":"/public/img/cartelera/coco.jpg",
+            "sinopsis":""
+      },
+      {
+            "titulo": "Corazones de Acero",
+            "genero":["acción","suspenso"],
+            "año":"",
+            "director":"",
+            "calificacion":"",
+            "reparto":"",
+            "banner":"/public/img/cartelera/corazones-de-acero.jpg",
+            "sinopsis":""
+      },
+      {
+            "titulo": "Doctor Strange",
+            "genero":["acción","aventura"],
+            "año":"",
+            "director":"",
+            "calificacion":"",
+            "reparto":"",
+            "banner":"/public/img/cartelera/doctor-strange.jpg",
+            "sinopsis":""
+      },
+      {
+            "titulo": "Doctor Strange Multiverse of Magness",
+            "genero":["acción",""],
+            "año":"",
+            "director":"",
+            "calificacion":"",
+            "reparto":"",
+            "banner":"/public/img/cartelera/doctor-strange-2.jpg",
+            "sinopsis":""
+      },
+      {
+            "titulo": "Encanto",
+            "genero":["aventura","animada"],
+            "año":"",
+            "director":"",
+            "calificacion":"",
+            "reparto":"",
+            "banner":"/public/img/cartelera/encanto.jpg",
+            "sinopsis":""
+      },
+      {
+            "titulo": "Eternals",
+            "genero":["Aventura",""],
+            "año":"",
+            "director":"",
+            "calificacion":"",
+            "reparto":"",
+            "banner":"/public/img/cartelera/eternals.jpg",
+            "sinopsis":""
+      },
+      {
+            "titulo": "Falcon y el Solado del Invierno",
+            "genero":["acción","aventura"],
+            "año":"",
+            "director":"",
+            "calificacion":"",
+            "reparto":"",
+            "banner":"/public/img/cartelera/falcon-y-el-soldado-del-invierno.jpg",
+            "sinopsis":""
+      },
+      {
+            "titulo": "Frozen II",
+            "genero":["aventura","animada"],
+            "año":"",
+            "director":"",
+            "calificacion":"",
+            "reparto":"",
+            "banner":"/public/img/cartelera/frozen-2.jpg",
+            "sinopsis":""
+      },
+      {
+            "titulo": "Guerra Mundial Z",
+            "genero":["acción","suspenso"],
+            "año":"",
+            "director":"",
+            "calificacion":"",
+            "reparto":"",
+            "banner":"/public/img/cartelera/guerra-mundial-z.jpg",
+            "sinopsis":""
+      },
+      {
+            "titulo": "Iron Man 2",
+            "genero":["aventura",""],
+            "año":"",
+            "director":"",
+            "calificacion":"",
+            "reparto":"",
+            "banner":"/public/img/cartelera/ireoman-2.jpg",
+            "sinopsis":""
+      },
+      {
+            "titulo": "La Monja",
+            "genero":["terror","suspenso"],
+            "año":"",
+            "director":"",
+            "calificacion":"",
+            "reparto":"",
+            "banner":"/public/img/cartelera/la-monja.jpg",
+            "sinopsis":""
+      },
+      {
+            "titulo": "Loki",
+            "genero":["aventura","acción"],
+            "año":"",
+            "director":"",
+            "calificacion":"",
+            "reparto":"",
+            "banner":"/public/img/cartelera/loki.jpg",
+            "sinopsis":""
+      },
+      {
+            "titulo": "MS1",
+            "genero":["acción","suspenso"],
+            "año":"",
+            "director":"",
+            "calificacion":"",
+            "reparto":"",
+            "banner":"/public/img/cartelera/ms1.jpg",
+            "sinopsis":""
+      },
+      {
+            "titulo": "Raya The Last Dragon",
+            "genero":["aventura","animada"],
+            "año":"",
+            "director":"",
+            "calificacion":"",
+            "reparto":"",
+            "banner":"/public/img/cartelera/raya.jpg",
+            "sinopsis":""
+      },
+      {
+            "titulo": "Shang-Chi",
+            "genero":["acción",""],
+            "año":"",
+            "director":"",
+            "calificacion":"",
+            "reparto":"",
+            "banner":"/public/img/cartelera/shang-chi.jpg",
+            "sinopsis":""
+      },
+      {
+            "titulo": "Spider Man Far From Home",
+            "genero":["acción",""],
+            "año":"",
+            "director":"",
+            "calificacion":"",
+            "reparto":"",
+            "banner":"/public/img/cartelera/spider-man.jpg",
+            "sinopsis":""
+      },
+      {
+            "titulo": "Spider Man Home Comming",
+            "genero":["acción",""],
+            "año":"",
+            "director":"",
+            "calificacion":"",
+            "reparto":"",
+            "banner":"/public/img/cartelera/spider-man-2.jpg",
+            "sinopsis":""
+      },
+      {
+            "titulo": "Spider Man No Way Home",
+            "genero":["aventura",""],
+            "año":"",
+            "director":"",
+            "calificacion":"",
+            "reparto":"",
+            "banner":"/public/img/cartelera/spider-man-3.jpg",
+            "sinopsis":""
+      },
+      {
+            "titulo": "Thor",
+            "genero":["acción","aventura"],
+            "año":"",
+            "director":"",
+            "calificacion":"",
+            "reparto":"",
+            "banner":"/public/img/cartelera/thor.webp",
+            "sinopsis":""
+      },
+      {
+            "titulo": "Thor Love and Thunder",
+            "genero":["aventura",""],
+            "año":"",
+            "director":"",
+            "calificacion":"",
+            "reparto":"",
+            "banner":"/public/img/cartelera/thor-love-and-thunder.jpg",
+            "sinopsis":""
+      },
+      {
+            "titulo": "Zootopia",
+            "genero":["aventura","animada"],
+            "año":"",
+            "director":"",
+            "calificacion":"",
+            "reparto":"",
+            "banner":"/public/img/cartelera/zootopia.jpg",
+            "sinopsis":""
+      }
+]
