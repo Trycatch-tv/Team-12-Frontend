@@ -1,40 +1,81 @@
-import React from "react";
+import { useCallback, useEffect, useState } from "react";
+import Options from "../../assets/options.json";
+import { useSearch } from "../../hooks/useSearch";
+import { useMovies } from "../../hooks/useMovies";
+import debounce from "just-debounce-it";
 import { BannersMovie } from "../banners/bannerMovie";
-import Data from "../../assets/catalogo.json";
-import Options from '../../assets/options.json';
-import "./cartelra.css";
 import "../banners/bannerMovie";
+import "./cartelra.css";
 
 export const CineList = () => {
+  const [sort, setSort] = useState("");
+  const [selectedOption, setSelectedOption] = useState("");
+  const { search, setQuery, error } = useSearch("");
+  const { movies, getMovies, loading } = useMovies({ search, sort });
+
+  useEffect(() => {
+    if (!search) {
+      getMovies({ search: null });
+    }
+  }, [getMovies, search]);
+
+  const debonceGetMovies = useCallback(
+    debounce((search) => {
+      getMovies({ search });
+    }, 300),
+    [getMovies]
+  );
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    getMovies({ search });
+  };
+
+  const handleSort = (genero) => {
+    setSort(genero);
+  };
+
+  const handleChange = (e) => {
+    const newSearch = e.target.value;
+    setQuery(newSearch);
+    debonceGetMovies(newSearch);
+  };
+
   return (
     <main className="containerListCartelera">
-      <div className="searchSection">
-        <input className="searchInput" type="searchInput" />
-        <select className="selectInput" name="" id="" placeholder="Genero">
-          {Options.map((i) => {
-            return (
-            i.Genero.map((i) => {
-              return (<option value={i}>{i}</option>)
-            })
-            )
-          })}
+      <form className="searchSection" onSubmit={handleSubmit}>
+        <input
+          className="searchInput"
+          type="text"
+          placeholder="Avenger, Start Wars, etc..."
+          name="query"
+          value={search}
+          onChange={handleChange}
+          autoComplete="off"
+        />
+        <select
+          className="selectInput"
+          name="genero"
+          value={selectedOption}
+          onChange={(event) => {
+            setSelectedOption(event.target.value);
+            handleSort(event.target.value);
+          }}
+          placeholder="Genero"
+        >
+          {Options.map((option) =>
+            option.Genero.map((genero) => (
+              <option key={genero} value={genero}>
+                {genero}
+              </option>
+            ))
+          )}
         </select>
-      </div>
-
+      </form>
       <br />
       <hr />
       <div className="bannerSection">
-        {Data.map((i) => {
-          return (
-            <div className="marcoBanner">
-              <BannersMovie img={i.banner} title={i.titulo} />
-              <div className="description">
-                <p>{i.titulo}</p>
-                {i.genero.map(i => <span className="des">{i}</span>)}
-              </div>
-            </div>
-          );
-        })}
+        {loading ? <p>Cargando...</p> : <BannersMovie movies={movies} />}
       </div>
     </main>
   );
