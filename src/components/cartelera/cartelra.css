@@ -2,49 +2,48 @@
   margin: 100px 15%;
 }
 .searchSection {
+  margin: 0;
+  padding: 0;
   width: 100%;
-  height: 40px;
-  /* background-color: #3f0991; */
-  position: relative;
+  max-width: 1200px;
   display: flex;
   flex-direction: row;
+  gap: 0.3rem;
 }
+
 .searchInput {
-  width: 90%;
+  width: 100%;
   height: 35px;
-  position: absolute;
   bottom: 0;
 }
 .selectInput {
-  width: 10%;
-  height: 35px;
-  position: absolute;
-  bottom: 0;
-  right: 0;
+  width: fit-content;
 }
+
 .bannerSection {
+  display: flex;
   width: 100%;
   height: 100%;
-  display: flex;
-  /* grid-template-columns: repeat(4, auto);
-  grid-auto-columns: auto; */
+  max-width: 1200px;
   grid-template-rows: auto;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
-  gap: 50px;
-  padding-top: 20px;
-}
-.marcoBanner {
-  width: 250px;
-  height: 380px;
-  margin-bottom: 50px;
 }
 
-.description > p, .description > span{
-      font-size: 12px;
-      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+.description > p,
+.description > span {
+  font-size: 12px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
-.des{
-      margin-right: 5px;
+.des {
+  margin-right: 5px;
+}
+
+@media screen and (max-width: 768px) {
+  .searchSection {
+    flex-direction: column;
+    align-items: center;
+  }
 }
