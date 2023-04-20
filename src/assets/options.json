@@ -1,5 +1,16 @@
 [
-      {
-            "Genero":["Género","Accion", "Aventura", "Terror", "Suspenso", "Animada", "Comedia", "Fanstasía","Drama"]
-      }
+  {
+    "Genero": [
+      "Género",
+      "Acción",
+      "Aventura",
+      "Terror",
+      "Suspenso",
+      "Animada",
+      "Comedia",
+      "Fanstasía",
+      "Drama",
+      "Ciencia ficción"
+    ]
+  }
 ]
