@@ -23,15 +23,16 @@ export const useMovies = ({ search, sort }) => {
     }
   }, []);
 
+
   const sortMovies = useMemo(() => {
     if (sort === "Género") {
       return movies;
     }
     let sortedMovies = [...movies];
     if (sort) {
-      sortedMovies = sortedMovies.filter((movie) =>
-        movie.genero.some((genre) => genre === sort)
-      );
+      sortedMovies = sortedMovies.filter((movie) => {
+        return movie.genero.includes(sort);
+      });
     }
     return sortedMovies;
   }, [sort, movies]);
