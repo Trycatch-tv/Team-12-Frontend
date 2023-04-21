@@ -67,7 +67,7 @@ export const NavBar = () => {
           }}
         >
           <Navbar.Item>
-            <Link to={"/login"} onClick={() => HandleSideMenu(link)}>
+            <Link to={"/login"}>
               <Button auto flat>
                 Login
               </Button>
