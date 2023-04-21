@@ -27,7 +27,14 @@ export const NavBar = () => {
 
   return (
     <Layout>
-      <Navbar isBordered shouldHideOnScroll variant="sticky">
+      <Navbar
+        isBordered
+        shouldHideOnScroll
+        variant="sticky"
+        css={{
+          padding: "0 1rem",
+        }}
+      >
         <Navbar.Toggle
           showIn="xs"
           ref={navbarToggleRef}
@@ -54,26 +61,12 @@ export const NavBar = () => {
           css={{
             width: "100%",
             justifyContent: "flex-end",
+            gap: "1rem",
           }}
         >
           <Link to={"/"}>Cartelera</Link>
           <Link to={"/aboudUs"}>Aboud Us</Link>
-        </Navbar.Content>
-        <Navbar.Content
-          css={{
-            "@xs": {
-              w: "12%",
-              jc: "flex-end",
-            },
-          }}
-        >
-          <Navbar.Item>
-            <Link to={"/login"}>
-              {/* <Button auto flat> */}
-                Login
-              {/* </Button> */}
-            </Link>
-          </Navbar.Item>
+          <Link to={"/login"}>Login</Link>
         </Navbar.Content>
         <Navbar.Collapse>
           {collapseItems.map(({ label, link }, index) => (

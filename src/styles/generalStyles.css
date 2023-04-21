@@ -1,11 +1,22 @@
+body {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
 a {
   text-decoration: none;
-  /* color: #000; */
-  /* font-weight: bold; */
-  /* font-size: 1.2rem; */
   transition: all 0.3s ease;
+  color: #000;
+  font-size: 1.2rem;
 }
 
 a:hover {
   text-decoration: none;
+  color: rgb(151, 118, 74);
+  height: 35px;
+  padding: 0 0.5rem;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  background-color: #efead4;
 }

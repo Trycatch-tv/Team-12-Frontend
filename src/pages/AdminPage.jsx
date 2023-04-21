@@ -64,12 +64,10 @@ export const AdminPage = () => {
   };
 
   const columns = [
-    { name: "Nombre", uid: "nombre" },
-    { name: "Correo", uid: "correo" },
-    { name: "Teléfono", uid: "telefono" },
-    { name: "Comensales", uid: "cantidad" },
-    { name: "Fecha", uid: "fecha" },
-    { name: "Eliminar", uid: "actions" },
+    { name: "Titulo", uid: "nombre" },
+    { name: "Director", uid: "correo" },
+    { name: "Año", uid: "telefono" },
+    { name: "Genero", uid: "cantidad" },
   ];
 
   const renderCell = (item, columnKey) => {
@@ -99,14 +97,13 @@ export const AdminPage = () => {
     <Container
       css={{
         width: "100%",
-        maxWidth: "1200px",
         margin: "0 auto",
         padding: "1rem",
         gap: "1rem",
         textAlign: "center",
       }}
     >
-      <Text h3>Listado de Reservas</Text>
+      <Text h3>Listado de Peliculas</Text>
       {isLoading && <Loading />}
       <Table
         aria-label="Example table with custom cells"
