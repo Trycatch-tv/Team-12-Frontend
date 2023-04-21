@@ -1,6 +1,6 @@
-import { Navbar, Link, Button } from "@nextui-org/react";
+import { Navbar, Button } from "@nextui-org/react";
 import { Layout } from "./Layout";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Logo from "../../../public/img/logos/logo-black.webp";
 import "../nav/navBar.css";
 
@@ -22,11 +22,11 @@ export const NavBar = () => {
             },
           }}
         >
-          <NavLink to={"/"}>
+          <Link to={"/"}>
             <picture className="logo">
               <img src={Logo} alt="logotipo" />
             </picture>
-          </NavLink>
+          </Link>
         </Navbar.Brand>
         <Navbar.Content
           enableCursorHighlight
@@ -38,12 +38,8 @@ export const NavBar = () => {
             justifyContent: "flex-end",
           }}
         >
-          <NavLink to={"/"}>
-            <Navbar.Link>Cartelera</Navbar.Link>
-          </NavLink>
-          <NavLink to={"/aboudUs"}>
-            <Navbar.Link>Aboud Us</Navbar.Link>
-          </NavLink>
+          <Link to={"/"}>Cartelera</Link>
+          <Link to={"/aboudUs"}>Aboud Us</Link>
         </Navbar.Content>
         <Navbar.Content
           css={{
@@ -54,33 +50,32 @@ export const NavBar = () => {
           }}
         >
           <Navbar.Item>
-            <NavLink to={"/login"}>
-              <Button auto flat as={Link}>
-                Login
-              </Button>
-            </NavLink>
+            <Button auto flat as={Link}>
+              <Link to={"/login"}>Login</Link>
+            </Button>
           </Navbar.Item>
         </Navbar.Content>
-        <Navbar.Collapse disableAnimation>
+        <Navbar.Collapse>
           {collapseItems.map(({ label, link }, index) => (
             <Navbar.CollapseItem
-              key={index}
+              key={label}
               activeColor="warning"
               css={{
                 color: index === collapseItems.length - 1 ? "$error" : "",
               }}
               isActive={index === 2}
             >
-              <NavLink to={link}>
-                <Link
-                  color="inherit"
-                  css={{
-                    minWidth: "100%",
-                  }}
-                >
-                  {label}
-                </Link>
-              </NavLink>
+              <Link to={link}>
+                {/* <Link
+                color="inherit"
+                css={{
+                  minWidth: "100%",
+                }}
+                href={link}
+              > */}
+                {label}
+                {/* </Link> */}
+              </Link>
             </Navbar.CollapseItem>
           ))}
         </Navbar.Collapse>
