@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 import Logo from "../../../public/img/logos/logo-black.webp";
 import "../nav/navBar.css";
+import "../../styles/generalStyles.css"
 
 export const NavBar = () => {
   const navbarToggleRef = useRef();
@@ -47,7 +48,7 @@ export const NavBar = () => {
             },
           }}
         >
-          <Link to={"/"}>
+          <Link className="navbar__link" to={"/"}>
             <picture className="logo">
               <img src={Logo} alt="logotipo" />
             </picture>
@@ -64,9 +65,15 @@ export const NavBar = () => {
             gap: "1rem",
           }}
         >
-          <Link to={"/"}>Cartelera</Link>
-          <Link to={"/aboudUs"}>Aboud Us</Link>
-          <Link to={"/login"}>Login</Link>
+          <Link className="navbar__link" to={"/"}>
+            Cartelera
+          </Link>
+          <Link className="navbar__link" to={"/aboudUs"}>
+            Aboud Us
+          </Link>
+          <Link className="navbar__link" to={"/login"}>
+            Login
+          </Link>
         </Navbar.Content>
         <Navbar.Collapse>
           {collapseItems.map(({ label, link }, index) => (

@@ -5,12 +5,20 @@ body {
 
 a {
   text-decoration: none;
+}
+
+a :hover {
+  text-decoration: none;
+}
+
+.navbar__link {
+  text-decoration: none;
   transition: all 0.3s ease;
   color: #000;
   font-size: 1.2rem;
 }
 
-a:hover {
+.navbar__link:hover {
   text-decoration: none;
   color: rgb(151, 118, 74);
   height: 35px;
