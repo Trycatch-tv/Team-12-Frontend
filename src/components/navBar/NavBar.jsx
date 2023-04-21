@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { Navbar, Button } from "@nextui-org/react";
 import { Layout } from "./Layout";
 import { Link } from "react-router-dom";
+
 import Logo from "../../../public/img/logos/logo-black.webp";
 import "../nav/navBar.css";
 
@@ -68,9 +69,9 @@ export const NavBar = () => {
         >
           <Navbar.Item>
             <Link to={"/login"}>
-              <Button auto flat>
+              {/* <Button auto flat> */}
                 Login
-              </Button>
+              {/* </Button> */}
             </Link>
           </Navbar.Item>
         </Navbar.Content>
