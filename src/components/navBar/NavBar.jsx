@@ -1,3 +1,4 @@
+import { useRef, useState } from "react";
 import { Navbar, Button } from "@nextui-org/react";
 import { Layout } from "./Layout";
 import { Link } from "react-router-dom";
@@ -5,16 +6,32 @@ import Logo from "../../../public/img/logos/logo-black.webp";
 import "../nav/navBar.css";
 
 export const NavBar = () => {
+  const navbarToggleRef = useRef();
+  const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
+  const [activeMenu, setActiveMenu] = useState(
+    window.location.href.split(`${window.location.origin}`)[1]
+  );
+
   const collapseItems = [
     { label: "Cartelera", link: "/" },
     { label: "Aboud Us", link: "/aboudUs" },
     { label: "Login", link: "/login" },
   ];
 
+  const HandleSideMenu = (link) => {
+    setActiveMenu(link);
+    isSideMenuOpen && navbarToggleRef.current.click();
+  };
+  console.log("activeMenu", activeMenu);
+
   return (
     <Layout>
       <Navbar isBordered shouldHideOnScroll variant="sticky">
-        <Navbar.Toggle showIn="xs" />
+        <Navbar.Toggle
+          showIn="xs"
+          ref={navbarToggleRef}
+          onChange={(isSelected) => setIsSideMenuOpen(isSelected)}
+        />
         <Navbar.Brand
           css={{
             "@xs": {
@@ -50,9 +67,11 @@ export const NavBar = () => {
           }}
         >
           <Navbar.Item>
-            <Button auto flat as={Link}>
-              <Link to={"/login"}>Login</Link>
-            </Button>
+            <Link to={"/login"} onClick={() => HandleSideMenu(link)}>
+              <Button auto flat>
+                Login
+              </Button>
+            </Link>
           </Navbar.Item>
         </Navbar.Content>
         <Navbar.Collapse>
@@ -63,18 +82,10 @@ export const NavBar = () => {
               css={{
                 color: index === collapseItems.length - 1 ? "$error" : "",
               }}
-              isActive={index === 2}
+              isActive={link === activeMenu}
             >
-              <Link to={link}>
-                {/* <Link
-                color="inherit"
-                css={{
-                  minWidth: "100%",
-                }}
-                href={link}
-              > */}
+              <Link to={link} onClick={() => HandleSideMenu(link)}>
                 {label}
-                {/* </Link> */}
               </Link>
             </Navbar.CollapseItem>
           ))}
