@@ -24,13 +24,41 @@
   gap: 50px;
   padding-top: 20px;
 }
+.details {
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: nowrap;
+  width: fit-content;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
 
 .movie {
   width: 250px;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  padding-top: 2.5rem;
+  width: 100%;
+  max-width: 250px;
 }
 .movie h4 {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   max-width: 100%;
+}
+
+.movies a {
+  text-decoration: none;
+  color: black;
+}
+.movies a :hover {
+  text-decoration: none;
+  color: black;
+  transition: 0.3s;
+  transform: translateY(-3px);
 }
