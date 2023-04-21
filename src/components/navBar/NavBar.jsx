@@ -24,7 +24,6 @@ export const NavBar = () => {
     setActiveMenu(link);
     isSideMenuOpen && navbarToggleRef.current.click();
   };
-  console.log("activeMenu", activeMenu);
 
   return (
     <Layout>

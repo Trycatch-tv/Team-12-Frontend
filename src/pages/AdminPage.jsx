@@ -7,25 +7,32 @@ import {
   Container,
   Card,
   Loading,
+  Row,
+  Col,
+  Tooltip,
 } from "@nextui-org/react";
 import Swal from "sweetalert2";
 
 import { IconButton } from "../components/IconButton";
 import { DeleteIcon } from "../components/DeleteIcon";
+import { EditIcon } from "../components/EditIcon";
 
 export const AdminPage = () => {
-  const [reservas, setReservas] = useState([]);
+  const [peliculas, setPeliculas] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
-  console.log(isLoading);
 
   const options = { year: "numeric", month: "short", day: "numeric" };
 
-  const actualizarReservas = () => {
-    fetch("http://52.202.2.211/api/v1/films")
+  const actualizarPeliculas = () => {
+    fetch(
+      `https://api.allorigins.win/get?url=${encodeURIComponent(
+        "http://52.202.2.211/api/v1/films"
+      )}`
+    )
       .then((response) => response.json())
       .then((data) => {
-        setReservas(data);
+        const { items } = JSON.parse(data.contents);
+        setPeliculas(items);
         setIsLoading(false);
       })
       .catch((error) => {
@@ -35,10 +42,11 @@ export const AdminPage = () => {
   };
 
   useEffect(() => {
-    actualizarReservas();
+    actualizarPeliculas();
   }, []);
 
-  const eliminarReserva = (id) => {
+  const eliminarPelicula = (id) => {
+    console.log("Eliminar reserva", id);
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -49,12 +57,19 @@ export const AdminPage = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://back-node-team09.onrender.com/reservas/${id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `
+        https://api.allorigins.win/get?url=${encodeURIComponent(
+          `http://52.202.2.211/api/v1/films/${id}
+          `
+        )}
+        `,
+          {
+            method: "DELETE",
+          }
+        )
           .then(() => {
-            // Actualizar las reservas después de borrar una
-            actualizarReservas();
+            actualizarPeliculas();
             console.log("Reserva eliminada exitosamente");
           })
           .catch((error) => console.error(error));
@@ -64,17 +79,17 @@ export const AdminPage = () => {
   };
 
   const columns = [
-    { name: "Titulo", uid: "nombre" },
-    { name: "Director", uid: "correo" },
-    { name: "Año", uid: "telefono" },
-    { name: "Genero", uid: "cantidad" },
+    { name: "Titulo", uid: "title" },
+    { name: "Director", uid: "director" },
+    { name: "Año", uid: "release_date" },
+    { name: "Editar", uid: "actions" },
   ];
 
   const renderCell = (item, columnKey) => {
     const cellValue = item[columnKey];
     switch (columnKey) {
-      case "_id":
-      case "nombre":
+      case "id":
+      case "title":
       case "correo":
       case "telefono":
         return cellValue;
@@ -84,9 +99,29 @@ export const AdminPage = () => {
 
       case "actions":
         return (
-          <IconButton onClick={() => eliminarReserva(item._id)} color="error">
-            <DeleteIcon size={20} fill="#FF0080" />
-          </IconButton>
+          <Row justify="center" align="center">
+            <Col css={{ d: "flex" }}>
+              <Tooltip content="Edit user">
+                <IconButton onClick={() => console.log("Edit user")}>
+                  <EditIcon size={20} fill="#979797" />
+                </IconButton>
+              </Tooltip>
+            </Col>
+            <Col css={{ d: "flex" }}>
+              <Tooltip
+                content="Delete user"
+                color="error"
+                // onClick={() => console.log("Delete user", user.id)}
+              >
+                <IconButton
+                  onClick={() => eliminarPelicula(item.id)}
+                  color="error"
+                >
+                  <DeleteIcon size={20} fill="#FF0080" />
+                </IconButton>
+              </Tooltip>
+            </Col>
+          </Row>
         );
       default:
         return cellValue;
@@ -100,7 +135,6 @@ export const AdminPage = () => {
         margin: "0 auto",
         padding: "1rem",
         gap: "1rem",
-        textAlign: "center",
       }}
     >
       <Text h3>Listado de Peliculas</Text>
@@ -128,8 +162,8 @@ export const AdminPage = () => {
           )}
         </Table.Header>
         <Table.Body>
-          {reservas.map((reserva) => (
-            <Table.Row key={reserva._id}>
+          {peliculas.map((pelicula) => (
+            <Table.Row key={pelicula.id}>
               {columns.map((column) => (
                 <Table.Cell
                   key={column.uid}
@@ -137,7 +171,7 @@ export const AdminPage = () => {
                     padding: "0.5rem 1rem",
                   }}
                 >
-                  {renderCell(reserva, column.uid)}
+                  {renderCell(pelicula, column.uid)}
                 </Table.Cell>
               ))}
             </Table.Row>
@@ -154,7 +188,10 @@ export const AdminPage = () => {
         }}
       >
         <fieldset>
-          <Button onPress={actualizarReservas} css={{ maxW: "40%" }}>
+          <Button onPress={actualizarPeliculas} css={{ maxW: "40%" }}>
+            Agregar pelicula
+          </Button>
+          <Button onPress={actualizarPeliculas} css={{ maxW: "40%" }}>
             Actualizar
           </Button>
           <LogoutApp />
