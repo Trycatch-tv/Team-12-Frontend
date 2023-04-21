@@ -1,20 +1,46 @@
-import { Navbar, Link, Button } from "@nextui-org/react";
+import { useRef, useState } from "react";
+import { Navbar, Button } from "@nextui-org/react";
 import { Layout } from "./Layout";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 import Logo from "../../../public/img/logos/logo-black.webp";
 import "../nav/navBar.css";
+import "../../styles/generalStyles.css"
 
 export const NavBar = () => {
+  const navbarToggleRef = useRef();
+  const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
+  const [activeMenu, setActiveMenu] = useState(
+    window.location.href.split(`${window.location.origin}`)[1]
+  );
+
   const collapseItems = [
     { label: "Cartelera", link: "/" },
     { label: "Aboud Us", link: "/aboudUs" },
     { label: "Login", link: "/login" },
   ];
 
+  const HandleSideMenu = (link) => {
+    setActiveMenu(link);
+    isSideMenuOpen && navbarToggleRef.current.click();
+  };
+  console.log("activeMenu", activeMenu);
+
   return (
     <Layout>
-      <Navbar isBordered shouldHideOnScroll variant="sticky">
-        <Navbar.Toggle showIn="xs" />
+      <Navbar
+        isBordered
+        shouldHideOnScroll
+        variant="sticky"
+        css={{
+          padding: "0 1rem",
+        }}
+      >
+        <Navbar.Toggle
+          showIn="xs"
+          ref={navbarToggleRef}
+          onChange={(isSelected) => setIsSideMenuOpen(isSelected)}
+        />
         <Navbar.Brand
           css={{
             "@xs": {
@@ -22,11 +48,11 @@ export const NavBar = () => {
             },
           }}
         >
-          <NavLink to={"/"}>
+          <Link className="navbar__link" to={"/"}>
             <picture className="logo">
               <img src={Logo} alt="logotipo" />
             </picture>
-          </NavLink>
+          </Link>
         </Navbar.Brand>
         <Navbar.Content
           enableCursorHighlight
@@ -36,51 +62,32 @@ export const NavBar = () => {
           css={{
             width: "100%",
             justifyContent: "flex-end",
+            gap: "1rem",
           }}
         >
-          <NavLink to={"/"}>
-            <Navbar.Link>Cartelera</Navbar.Link>
-          </NavLink>
-          <NavLink to={"/aboudUs"}>
-            <Navbar.Link>Aboud Us</Navbar.Link>
-          </NavLink>
+          <Link className="navbar__link" to={"/"}>
+            Cartelera
+          </Link>
+          <Link className="navbar__link" to={"/aboudUs"}>
+            Aboud Us
+          </Link>
+          <Link className="navbar__link" to={"/login"}>
+            Login
+          </Link>
         </Navbar.Content>
-        <Navbar.Content
-          css={{
-            "@xs": {
-              w: "12%",
-              jc: "flex-end",
-            },
-          }}
-        >
-          <Navbar.Item>
-            <NavLink to={"/login"}>
-              <Button auto flat as={Link}>
-                Login
-              </Button>
-            </NavLink>
-          </Navbar.Item>
-        </Navbar.Content>
-        <Navbar.Collapse disableAnimation>
+        <Navbar.Collapse>
           {collapseItems.map(({ label, link }, index) => (
             <Navbar.CollapseItem
-              key={index}
+              key={label}
               activeColor="warning"
               css={{
                 color: index === collapseItems.length - 1 ? "$error" : "",
               }}
-              isActive={index === 2}
+              isActive={link === activeMenu}
             >
-              <NavLink to={link}>
-                <Link
-                  color="inherit"
-                  css={{
-                    minWidth: "100%",
-                  }}
-                >
-                  {label}
-                </Link>
-              </NavLink>
+              <Link to={link} onClick={() => HandleSideMenu(link)}>
+                {label}
+              </Link>
             </Navbar.CollapseItem>
           ))}
         </Navbar.Collapse>

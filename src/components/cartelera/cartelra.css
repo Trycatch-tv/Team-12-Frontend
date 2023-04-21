@@ -1,5 +1,5 @@
 .containerListCartelera {
-  margin: 100px 15%;
+  margin: 5rem 1rem;
 }
 .searchSection {
   margin: 0;
@@ -9,28 +9,31 @@
   display: flex;
   flex-direction: row;
   gap: 0.3rem;
+  margin: 0 auto;
 }
 
 .searchInput {
   width: 100%;
   height: 35px;
   bottom: 0;
+  border-radius: 10px;
+  border: 1px solid #ccc;
 }
 .selectInput {
   width: fit-content;
+  border-radius: 10px;
+  border: 1px solid #ccc;
 }
 
 .bannerSection {
   display: flex;
   width: 100%;
   height: 100%;
-  max-width: 1200px;
   grid-template-rows: auto;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
 }
-
 
 .description > p,
 .description > span {
@@ -45,5 +48,12 @@
   .searchSection {
     flex-direction: column;
     align-items: center;
+    gap: 1rem;
+  }
+  .containerListCartelera {
+    margin: 2rem 1rem;
+  }
+  .selectInput{
+    height: 35px;
   }
 }
