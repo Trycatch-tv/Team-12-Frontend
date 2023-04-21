@@ -1,0 +1,11 @@
+a {
+  text-decoration: none;
+  /* color: #000; */
+  /* font-weight: bold; */
+  /* font-size: 1.2rem; */
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  text-decoration: none;
+}
