@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { BannerMovieDetails } from "../components/banners/bannerMovieDetails";
+import { BannerMovieDetails } from "../components/banners/BannerMovieDetails";
 
 export const Pdp = () => {
   const { id } = useParams();
@@ -15,7 +15,6 @@ export const Pdp = () => {
       setMovie(selectedMovie);
     }
   }, [id]);
-
 
   if (!movie) {
     return <div>Loading...</div>;
