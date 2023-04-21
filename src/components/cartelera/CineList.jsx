@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
-import Options from "../../assets/options.json";
+import debounce from "just-debounce-it";
 import { useSearch } from "../../hooks/useSearch";
 import { useMovies } from "../../hooks/useMovies";
-import debounce from "just-debounce-it";
 import { BannersMovie } from "../banners/bannerMovie";
+import Options from "../../assets/options.json";
 import "../banners/bannerMovie";
 import "./cartelra.css";
 
