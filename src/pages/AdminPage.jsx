@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { LogoutApp } from "../components/LogoutApp";
 import {
   Table,
@@ -16,29 +16,40 @@ import Swal from "sweetalert2";
 import { IconButton } from "../components/IconButton";
 import { DeleteIcon } from "../components/DeleteIcon";
 import { EditIcon } from "../components/EditIcon";
+import { ModalComponent } from "../components/ModalComponent";
 
 export const AdminPage = () => {
+
   const [peliculas, setPeliculas] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const openModal = () => {
+    setModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
+  };
 
   const options = { year: "numeric", month: "short", day: "numeric" };
 
   const actualizarPeliculas = () => {
-    fetch(
-      `https://api.allorigins.win/get?url=${encodeURIComponent(
-        "http://52.202.2.211/api/v1/films"
-      )}`
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        const { items } = JSON.parse(data.contents);
-        setPeliculas(items);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.error(error);
-        setIsLoading(false);
-      });
+    // fetch(
+    //   `https://api.allorigins.win/get?url=${encodeURIComponent(
+    //     "http://52.202.2.211/api/v1/films"
+    //   )}`
+    // )
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     const { items } = JSON.parse(data.contents);
+    //     setPeliculas(items);
+    //     setIsLoading(false);
+    //   })
+    //   .catch((error) => {
+    //     console.error(error);
+    //     setIsLoading(false);
+    //   });
   };
 
   useEffect(() => {
@@ -188,7 +199,7 @@ export const AdminPage = () => {
         }}
       >
         <fieldset>
-          <Button onPress={actualizarPeliculas} css={{ maxW: "40%" }}>
+          <Button onPress={openModal} css={{ maxW: "40%" }}>
             Agregar pelicula
           </Button>
           <Button onPress={actualizarPeliculas} css={{ maxW: "40%" }}>
@@ -196,6 +207,7 @@ export const AdminPage = () => {
           </Button>
           <LogoutApp />
         </fieldset>
+        <ModalComponent visible={modalVisible} onClose={closeModal} />
       </Card>
     </Container>
   );

@@ -1,14 +1,7 @@
-
-export const searchMovies = async ({ search }) => {
+export const getMovies = async () => {
   const url = "http://51.222.31.16/api/v1/films";
-  let endpoint = url;
-
-  if (search && search !== "") {
-    endpoint += `?query=${search}`;
-  }
-
   try {
-    const response = await fetch(endpoint);
+    const response = await fetch(url);
     if (!response.ok) {
       throw new Error("Network response was not ok.");
     }

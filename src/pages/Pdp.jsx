@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { BannerMovieDetails } from "../components/banners/BannerMovieDetails";
+import { getMovieId } from "../api/getMovieId";
 
 export const Pdp = () => {
   const { id } = useParams();
@@ -8,17 +9,14 @@ export const Pdp = () => {
   const [movie, setMovie] = useState(null);
 
   useEffect(() => {
-    const moviesCache = localStorage.getItem("moviesCache");
-    if (moviesCache) {
-      const movies = JSON.parse(moviesCache);
-      const selectedMovie = movies.find((movie) => movie.title === id);
-      setMovie(selectedMovie);
-    }
+    getMovieId(id)
+      .then((selectedMovie) => setMovie(selectedMovie))
+      .catch((error) => console.log(error));
   }, [id]);
 
   if (!movie) {
     return <div>Loading...</div>;
   }
 
-  return <BannerMovieDetails movies={movie} />;
+  return <BannerMovieDetails movie={movie} />;
 };

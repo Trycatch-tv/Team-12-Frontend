@@ -41,7 +41,6 @@ export const AuthProvider = () => {
       <BrowserRouter>
         <NavBar />
         <AppRouter />
-        {/* <CineList /> */}
         <Footer />
       </BrowserRouter>
     </AuthContext.Provider>

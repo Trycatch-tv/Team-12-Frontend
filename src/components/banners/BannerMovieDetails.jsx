@@ -3,11 +3,11 @@ import { useState, useEffect } from "react";
 
 import "./bannerMovie.css";
 
-export const BannerMovieDetails = ({ movies }) => {
+export const BannerMovieDetails = ({ movie }) => {
   const hasMovies =
-    typeof movies === "object" &&
-    movies !== null &&
-    Object.keys(movies).length > 0;
+    typeof movie === "object" &&
+    movie !== null &&
+    Object.keys(movie).length > 0;
 
   const [bannerUrl, setBannerUrl] = useState(null);
   const [loaded, setLoaded] = useState(false);
@@ -26,16 +26,16 @@ export const BannerMovieDetails = ({ movies }) => {
 
   useEffect(() => {
     if (hasMovies) {
-      checkImage(movies.poster_url).then(() => setLoaded(true));
+      checkImage(movie.poster_url).then(() => setLoaded(true));
     }
-  }, [hasMovies, movies]);
+  }, [hasMovies, movie]);
 
   return (
     <>
       {hasMovies ? (
         <ul className="movies details">
           <li className="movie">
-            <h4>{movies.title}</h4>
+            <h4>{movie.title}</h4>
             {loaded && bannerUrl ? (
               <img className="banner 1" src={bannerUrl} alt={movies.titulo} />
             ) : (
@@ -47,9 +47,9 @@ export const BannerMovieDetails = ({ movies }) => {
             )}
           </li>
           <li className="info">
-            <p>Director: {movies.director}</p>
-            <p>Fecha de lanzamiento: {movies.release_date}</p>
-            <p>Sinopsis: {movies.sinopsis}</p>
+            <p>Director: {movie.director}</p>
+            <p>Fecha de lanzamiento: {movie.release_date}</p>
+            <p>Sinopsis: {movie.sinopsis}</p>
           </li>
         </ul>
       ) : (

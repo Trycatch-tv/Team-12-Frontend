@@ -30,6 +30,13 @@
   margin: 0 auto;
   padding: 2rem;
 }
+.details li {
+  list-style: none;
+}
+
+.details li h4 {
+  overflow: visible;
+}
 
 .movie {
   width: 250px;
