@@ -1,14 +1,50 @@
 import { Modal, Button, Text, Input, Row, Checkbox } from "@nextui-org/react";
-// import { Mail } from "./Mail";
-// import { Password } from "./Password";
+import { useState } from "react";
 
 export const ModalComponent = ({ visible, onClose }) => {
-  // const [visible, setVisible] = useState(false);
-  // const handler = () => setVisible(true);
+  const [poster, setPoster] = useState("");
+  const [categoria, setCategoria] = useState("");
+  const [genero, setGenero] = useState("");
+  const [titulo, setTitulo] = useState("");
+  const [sinopsis, setSinopsis] = useState("");
+  const [language, setLanguage] = useState("");
+  const [director, setDirector] = useState("");
+  const [releaseDate, setReleaseDate] = useState("");
+  console.log("poster", poster);
 
   const closeHandler = () => {
     onClose();
     console.log("closed");
+  };
+
+  const handleSubmit = async (event) => {
+    // event.preventDefault();
+
+    const formData = new FormData();
+    formData.append("file", poster);
+    // formData.append("file", event.target.files[0]);
+    formData.append("categoryId", categoria);
+    formData.append("genderId", genero);
+    formData.append("title", titulo);
+    formData.append("sinopsis", sinopsis);
+    formData.append("language", language);
+    formData.append("director", director);
+    formData.append("release_date", releaseDate);
+
+    try {
+      const response = await fetch("http://51.222.31.16/api/v1/films", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+      console.log(data);
+
+      // closeHandler();
+    } catch (error) {
+      console.error("Error al publicar la película: ", error);
+      // Aquí podrías mostrar un mensaje de error o hacer alguna otra acción
+    }
   };
 
   return (
@@ -28,84 +64,100 @@ export const ModalComponent = ({ visible, onClose }) => {
         </Modal.Header>
         <Modal.Body>
           <Input
-          type="file"
+            aria-label="poster"
+            name="poster"
+            type="file"
             clearable
             bordered
             fullWidth
             color="primary"
             size="lg"
             placeholder="Poster"
-            // contentLeft={<Mail fill="currentColor" />}
+            onChange={(event) => setPoster(event.fileInput.files[0])}
           />
           <Input
+            aria-label="categoria"
+            name="categoria"
             clearable
             bordered
             fullWidth
             color="primary"
             size="lg"
             placeholder="Categoria"
-            // contentLeft={<Password fill="currentColor" />}
+            onChange={(event) => setCategoria(event.target.value)}
           />
           <Input
+            aria-label="genero"
+            name="genero"
             clearable
             bordered
             fullWidth
             color="primary"
             size="lg"
             placeholder="Genero"
-            // contentLeft={<Password fill="currentColor" />}
+            onChange={(event) => setGenero(event.target.value)}
           />
           <Input
+            aria-label="titulo"
+            name="titulo"
             clearable
             bordered
             fullWidth
             color="primary"
             size="lg"
             placeholder="Titulo"
-            // contentLeft={<Password fill="currentColor" />}
+            onChange={(event) => setTitulo(event.target.value)}
           />
           <Input
+            aria-label="sinopsis"
+            name="sinopsis"
             clearable
             bordered
             fullWidth
             color="primary"
             size="lg"
             placeholder="Sinopsis"
-            // contentLeft={<Password fill="currentColor" />}
+            onChange={(event) => setSinopsis(event.target.value)}
           />
           <Input
+            aria-label="language"
+            name="language"
             clearable
             bordered
             fullWidth
             color="primary"
             size="lg"
             placeholder="Lenguage"
-            // contentLeft={<Password fill="currentColor" />}
+            onChange={(event) => setLanguage(event.target.value)}
           />
           <Input
+            aria-label="director"
+            name="director"
             clearable
             bordered
             fullWidth
             color="primary"
             size="lg"
             placeholder="Director"
-            // contentLeft={<Password fill="currentColor" />}
+            onChange={(event) => setDirector(event.target.value)}
           />
           <Input
+            aria-label="release_date"
+            name="release_date"
             clearable
             bordered
             fullWidth
             color="primary"
             size="lg"
             placeholder="Año de lanzamiento"
-            // contentLeft={<Password fill="currentColor" />}
+            onChange={(event) => setReleaseDate(event.target.value)}
           />
         </Modal.Body>
         <Modal.Footer>
           <Button auto flat color="error" onPress={closeHandler}>
             Close
           </Button>
-          <Button auto onPress={closeHandler}>
+          <Button auto onPress={(event) => handleSubmit(event)}>
             Send
           </Button>
         </Modal.Footer>

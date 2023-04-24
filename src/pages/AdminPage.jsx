@@ -17,44 +17,29 @@ import { IconButton } from "../components/IconButton";
 import { DeleteIcon } from "../components/DeleteIcon";
 import { EditIcon } from "../components/EditIcon";
 import { ModalComponent } from "../components/ModalComponent";
+import { useMovies } from "../hooks/useMovies";
 
 export const AdminPage = () => {
-
   const [peliculas, setPeliculas] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [modalVisible, setModalVisible] = useState(false);
 
-  const openModal = () => {
-    setModalVisible(true);
+  const agregarPelicula = async (pelicula) => {
+    try {
+      const response = await fetch("http://51.222.31.16/api/v1/films", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(pelicula),
+      });
+      const nuevaPelicula = await response.json();
+      setPeliculas([...peliculas, nuevaPelicula]);
+      console.log("Pelicula agregada exitosamente");
+    } catch (error) {
+      console.error(error);
+    }
   };
-
-  const closeModal = () => {
-    setModalVisible(false);
-  };
-
-  const options = { year: "numeric", month: "short", day: "numeric" };
-
-  const actualizarPeliculas = () => {
-    // fetch(
-    //   `https://api.allorigins.win/get?url=${encodeURIComponent(
-    //     "http://52.202.2.211/api/v1/films"
-    //   )}`
-    // )
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     const { items } = JSON.parse(data.contents);
-    //     setPeliculas(items);
-    //     setIsLoading(false);
-    //   })
-    //   .catch((error) => {
-    //     console.error(error);
-    //     setIsLoading(false);
-    //   });
-  };
-
-  useEffect(() => {
-    actualizarPeliculas();
-  }, []);
 
   const eliminarPelicula = (id) => {
     console.log("Eliminar reserva", id);
@@ -70,10 +55,7 @@ export const AdminPage = () => {
       if (result.isConfirmed) {
         fetch(
           `
-        https://api.allorigins.win/get?url=${encodeURIComponent(
-          `http://52.202.2.211/api/v1/films/${id}
-          `
-        )}
+        http://51.222.31.16/api/v1/films/${id}
         `,
           {
             method: "DELETE",
@@ -87,6 +69,81 @@ export const AdminPage = () => {
         Swal.fire("Deleted!", "Your file has been deleted.", "success");
       }
     });
+  };
+
+  const actualizarPeliculas = async () => {
+    setIsLoading(true);
+    try {
+      const response = await fetch("http://51.222.31.16/api/v1/films");
+      const { items } = await response.json();
+      if (JSON.stringify(peliculas) !== JSON.stringify(items)) {
+        setPeliculas(items);
+        console.log("Listado actualizado");
+      }
+      setIsLoading(false);
+    } catch (error) {
+      console.error(error);
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    actualizarPeliculas();
+  }, []);
+
+  // const search = "";
+  // const sort = "";
+  // const { movies, getMovies, loading } = useMovies({ search, sort });
+  // console.log("admin:", movies);
+  // const options = { year: "numeric", month: "short", day: "numeric" };
+
+  // const actualizarPeliculas = () => {
+  //   getMovies({ search: null });
+  //   console.log("Listado actualizado");
+  // };
+
+  // useEffect(() => {
+  //   getMovies({ search: null });
+  //   setPeliculas(movies);
+  //   setIsLoading(false);
+  // }, [movies]);
+
+  // const eliminarPelicula = (id) => {
+  //   console.log("Eliminar reserva", id);
+  //   Swal.fire({
+  //     title: "Are you sure?",
+  //     text: "You won't be able to revert this!",
+  //     icon: "warning",
+  //     showCancelButton: true,
+  //     confirmButtonColor: "#3085d6",
+  //     cancelButtonColor: "#d33",
+  //     confirmButtonText: "Yes, delete it!",
+  //   }).then((result) => {
+  //     if (result.isConfirmed) {
+  //       fetch(
+  //         `
+  //       http://51.222.31.16/api/v1/films/${id}
+  //       `,
+  //         {
+  //           method: "DELETE",
+  //         }
+  //       )
+  //         .then(() => {
+  //           actualizarPeliculas();
+  //           console.log("Reserva eliminada exitosamente");
+  //         })
+  //         .catch((error) => console.error(error));
+  //       Swal.fire("Deleted!", "Your file has been deleted.", "success");
+  //     }
+  //   });
+  // };
+
+  const closeModal = () => {
+    setModalVisible(false);
+  };
+
+  const openModal = () => {
+    setModalVisible(true);
   };
 
   const columns = [
@@ -151,7 +208,7 @@ export const AdminPage = () => {
       <Text h3>Listado de Peliculas</Text>
       {isLoading && <Loading />}
       <Table
-        aria-label="Example table with custom cells"
+        aria-label="Tabla de listado de películas"
         css={{
           height: "auto",
           minWidth: "100%",
@@ -173,7 +230,7 @@ export const AdminPage = () => {
           )}
         </Table.Header>
         <Table.Body>
-          {peliculas.map((pelicula) => (
+          {peliculas?.map((pelicula) => (
             <Table.Row key={pelicula.id}>
               {columns.map((column) => (
                 <Table.Cell
