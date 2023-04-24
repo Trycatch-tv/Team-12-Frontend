@@ -1,5 +1,5 @@
 export const getMovieId = async (id) => {
-  const url = "https://51.222.31.16/api/v1/films";
+  const url = "http://51.222.31.16/api/v1/films";
   try {
     const response = await fetch(`${url}/${id}`);
     if (!response.ok) {

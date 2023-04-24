@@ -17,34 +17,65 @@ export const ModalComponent = ({ visible, onClose }) => {
     console.log("closed");
   };
 
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+
+  //   const formData = new FormData();
+  //   formData.append("file", poster);
+  //   formData.append("categoryId", categoria);
+  //   formData.append("genderId", genero);
+  //   formData.append("title", titulo);
+  //   formData.append("sinopsis", sinopsis);
+  //   formData.append("language", language);
+  //   formData.append("director", director);
+  //   formData.append("release_date", releaseDate);
+
+  //   try {
+  //     const response = await fetch("http://51.222.31.16/api/v1/films", {
+  //       method: "POST",
+  //       body: formData,
+  //     });
+
+  //     const data = await response.json();
+  //     console.log(data);
+
+  //     // closeHandler();
+  //   } catch (error) {
+  //     console.error("Error al publicar la película: ", error);
+  //     // Aquí podrías mostrar un mensaje de error o hacer alguna otra acción
+  //   }
+  // };
+
   const handleSubmit = async (event) => {
     // event.preventDefault();
 
-    const formData = new FormData();
-    formData.append("file", poster);
-    // formData.append("file", event.target.files[0]);
-    formData.append("categoryId", categoria);
-    formData.append("genderId", genero);
-    formData.append("title", titulo);
-    formData.append("sinopsis", sinopsis);
-    formData.append("language", language);
-    formData.append("director", director);
-    formData.append("release_date", releaseDate);
+    var formdata = new FormData();
+    formdata.append(
+      "file ",
+      fileInput.files[0],
+      "/C:/Users/jaime/Downloads/sean-oulashin-KMn4VEeEPR8-unsplash.jpg"
+    );
+    formdata.append("categoryId", "1");
+    formdata.append("genderId", "2");
+    formdata.append("title", "Jaimefront");
+    formdata.append(
+      "sinopsis",
+      "ñlkjasdfñlkjasdf ñlkjasdfñlkj  ñlkjañlsdfkj ñlkjasdfñ lkj "
+    );
+    formdata.append("language", "es");
+    formdata.append("director", "Jaime test2");
+    formdata.append("release_date", "2023-04-03");
 
-    try {
-      const response = await fetch("http://51.222.31.16/api/v1/films", {
-        method: "POST",
-        body: formData,
-      });
+    var requestOptions = {
+      method: "POST",
+      body: formdata,
+      redirect: "follow",
+    };
 
-      const data = await response.json();
-      console.log(data);
-
-      // closeHandler();
-    } catch (error) {
-      console.error("Error al publicar la película: ", error);
-      // Aquí podrías mostrar un mensaje de error o hacer alguna otra acción
-    }
+    fetch("http://51.222.31.16/api/v1/films", requestOptions)
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.log("error", error));
   };
 
   return (

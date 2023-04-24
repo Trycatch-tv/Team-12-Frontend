@@ -1,6 +1,6 @@
 
 export const searchMovies = async ({ search }) => {
-  const url = "https://51.222.31.16/api/v1/films";
+  const url = "http://51.222.31.16/api/v1/films";
   let endpoint = url;
 
   if (search && search !== "") {
