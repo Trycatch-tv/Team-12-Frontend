@@ -1,3 +1,5 @@
+// get a api sin usar allorigins
+
 // export const searchMovies = async ({ search }) => {
 //   const url = "http://51.222.31.16/api/v1/films";
 //   let endpoint = url;
@@ -28,8 +30,11 @@
 //   }
 // };
 
+// get a api usando allorigins
+
 export const searchMovies = async ({ search }) => {
-  const url = "http://51.222.31.16/api/v1/films";
+  import.meta.env.VITE_FRONT_API;
+  const url = import.meta.env.VITE_FRONT_API;
   let endpoint = url;
 
   if (search && search !== "") {

@@ -1,11 +1,12 @@
 import { useCallback, useEffect, useState } from "react";
 import debounce from "just-debounce-it";
-import { useSearch } from "../../hooks/useSearch";
-import { useMovies } from "../../hooks/useMovies";
-import { BannersMovie } from "../banners/bannerMovie";
-import Options from "../../assets/options.json";
-import "../banners/bannerMovie";
-import "./cartelra.css";
+import { Loading } from "@nextui-org/react";
+import { useSearch } from "../hooks/useSearch";
+import { useMovies } from "../hooks/useMovies";
+import { BannersMovie } from "../components/banners/bannerMovie";
+import Options from "../assets/options.json";
+import "../components/banners/bannerMovie";
+import "../styles/cineList.css";
 
 export const CineList = () => {
   const [sort, setSort] = useState("");
@@ -41,7 +42,6 @@ export const CineList = () => {
     debonceGetMovies(newSearch);
   };
 
-
   return (
     <main className="containerListCartelera">
       <form className="searchSection" onSubmit={handleSubmit}>
@@ -76,7 +76,7 @@ export const CineList = () => {
       <br />
       <hr />
       <div className="bannerSection">
-        {loading ? <p>Cargando...</p> : <BannersMovie movies={movies} />}
+        {loading ? <Loading /> : <BannersMovie movies={movies} />}
       </div>
     </main>
   );

@@ -1,5 +1,5 @@
 export const getMovies = async () => {
-  const url = "http://51.222.31.16/api/v1/films";
+  const url = import.meta.env.VITE_FRONT_API;
   try {
     const response = await fetch(url);
     if (!response.ok) {

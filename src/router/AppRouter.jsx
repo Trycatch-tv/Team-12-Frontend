@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { Pdp } from "../pages/Pdp";
-import { CineList } from "../components/cartelera/CineList";
+import { CineList } from "../pages/CineList";
 import { PublicRouter } from "./PublicRouter";
 import { PrivateRouter } from "./PrivateRouter";
 import { AdminPage } from "../pages/AdminPage";
