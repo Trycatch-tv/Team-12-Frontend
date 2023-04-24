@@ -51,8 +51,7 @@ export const ModalComponent = ({ visible, onClose }) => {
 
     var formdata = new FormData();
     formdata.append(
-      "file ",
-      fileInput.files[0],
+      "file",
       "/C:/Users/jaime/Downloads/sean-oulashin-KMn4VEeEPR8-unsplash.jpg"
     );
     formdata.append("categoryId", "1");
