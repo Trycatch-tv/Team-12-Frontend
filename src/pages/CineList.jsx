@@ -6,7 +6,7 @@ import { useMovies } from "../hooks/useMovies";
 import { BannersMovie } from "../components/banners/bannerMovie";
 import Options from "../assets/options.json";
 import "../components/banners/bannerMovie";
-import "../styles/cineList.css";
+import "../styles/CineList.css";
 
 export const CineList = () => {
   const [sort, setSort] = useState("");
