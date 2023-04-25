@@ -17,7 +17,6 @@ import { IconButton } from "../components/IconButton";
 import { DeleteIcon } from "../components/DeleteIcon";
 import { EditIcon } from "../components/EditIcon";
 import { ModalComponent } from "../components/ModalComponent";
-import { getMovies } from "../api/getMovies";
 import { useMovies } from "../hooks/useMovies";
 
 export const AdminPage = () => {
