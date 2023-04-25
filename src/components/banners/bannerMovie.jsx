@@ -40,7 +40,7 @@ export const BannersMovie = ({ movies }) => {
       {hasMovies ? (
         <ul className="movies">
           {movies.map((movie, index) => (
-            <Link to={`/movies/${movie.titulo}`} key={index}>
+            <Link to={`/movie/${movie.id}`} key={index}>
               <li className="movie" key={index}>
                 <h4>{movie.titulo}</h4>
                 <p>{movie.año}</p>

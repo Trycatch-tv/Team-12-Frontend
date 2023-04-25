@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { Pdp } from "../pages/Pdp";
-import { CineList } from "../components/cartelera/CineList";
+import { CineList } from "../pages/CineList";
 import { PublicRouter } from "./PublicRouter";
 import { PrivateRouter } from "./PrivateRouter";
 import { AdminPage } from "../pages/AdminPage";
@@ -13,7 +13,7 @@ export const AppRouter = () => {
     <Routes>
       <Route path="/" element={<PublicRouter />}>
         <Route path="/" element={<CineList />} />
-        <Route path="/movies/:id" element={<Pdp />} />
+        <Route path="/movie/:id" element={<Pdp />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/aboudUs" element={<AboudUs />} />
       </Route>

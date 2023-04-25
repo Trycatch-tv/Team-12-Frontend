@@ -39,6 +39,8 @@ fieldset {
   justify-content: center;
 }
 
+
+
 @media only screen and (max-width: 768px) {
   fieldset {
     flex-direction: column;

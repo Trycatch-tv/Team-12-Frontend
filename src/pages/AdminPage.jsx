@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { LogoutApp } from "../components/LogoutApp";
 import {
   Table,
@@ -16,34 +16,17 @@ import Swal from "sweetalert2";
 import { IconButton } from "../components/IconButton";
 import { DeleteIcon } from "../components/DeleteIcon";
 import { EditIcon } from "../components/EditIcon";
+import { ModalComponent } from "../components/ModalComponent";
+import { getMovies } from "../api/getMovies";
+import { useMovies } from "../hooks/useMovies";
 
 export const AdminPage = () => {
-  const [peliculas, setPeliculas] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [modalVisible, setModalVisible] = useState(false);
+  const search = "";
+  const sort = "";
+  const { getMovies, loading, movies } = useMovies({ search, sort });
 
-  const options = { year: "numeric", month: "short", day: "numeric" };
-
-  const actualizarPeliculas = () => {
-    fetch(
-      `https://api.allorigins.win/get?url=${encodeURIComponent(
-        "http://52.202.2.211/api/v1/films"
-      )}`
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        const { items } = JSON.parse(data.contents);
-        setPeliculas(items);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.error(error);
-        setIsLoading(false);
-      });
-  };
-
-  useEffect(() => {
-    actualizarPeliculas();
-  }, []);
+  const url = import.meta.env.VITE_FRONT_API;
 
   const eliminarPelicula = (id) => {
     console.log("Eliminar reserva", id);
@@ -59,17 +42,14 @@ export const AdminPage = () => {
       if (result.isConfirmed) {
         fetch(
           `
-        https://api.allorigins.win/get?url=${encodeURIComponent(
-          `http://52.202.2.211/api/v1/films/${id}
-          `
-        )}
+        ${url}/${id}
         `,
           {
             method: "DELETE",
           }
         )
           .then(() => {
-            actualizarPeliculas();
+            getMovies({ search: null });
             console.log("Reserva eliminada exitosamente");
           })
           .catch((error) => console.error(error));
@@ -78,10 +58,22 @@ export const AdminPage = () => {
     });
   };
 
+  useEffect(() => {
+    getMovies({ search: null });
+  }, [movies]);
+
+  const closeModal = () => {
+    setModalVisible(false);
+  };
+
+  const openModal = () => {
+    setModalVisible(true);
+  };
+
   const columns = [
-    { name: "Titulo", uid: "title" },
+    { name: "Titulo", uid: "titulo" },
     { name: "Director", uid: "director" },
-    { name: "Año", uid: "release_date" },
+    { name: "Año", uid: "año" },
     { name: "Editar", uid: "actions" },
   ];
 
@@ -108,11 +100,7 @@ export const AdminPage = () => {
               </Tooltip>
             </Col>
             <Col css={{ d: "flex" }}>
-              <Tooltip
-                content="Delete user"
-                color="error"
-                // onClick={() => console.log("Delete user", user.id)}
-              >
+              <Tooltip content="Delete user" color="error">
                 <IconButton
                   onClick={() => eliminarPelicula(item.id)}
                   color="error"
@@ -138,9 +126,9 @@ export const AdminPage = () => {
       }}
     >
       <Text h3>Listado de Peliculas</Text>
-      {isLoading && <Loading />}
+      {loading && <Loading />}
       <Table
-        aria-label="Example table with custom cells"
+        aria-label="Tabla de listado de películas"
         css={{
           height: "auto",
           minWidth: "100%",
@@ -162,7 +150,7 @@ export const AdminPage = () => {
           )}
         </Table.Header>
         <Table.Body>
-          {peliculas.map((pelicula) => (
+          {movies?.map((pelicula) => (
             <Table.Row key={pelicula.id}>
               {columns.map((column) => (
                 <Table.Cell
@@ -188,14 +176,15 @@ export const AdminPage = () => {
         }}
       >
         <fieldset>
-          <Button onPress={actualizarPeliculas} css={{ maxW: "40%" }}>
+          <Button onPress={openModal} css={{ maxW: "40%" }}>
             Agregar pelicula
           </Button>
-          <Button onPress={actualizarPeliculas} css={{ maxW: "40%" }}>
+          <Button onPress={getMovies} css={{ maxW: "40%" }}>
             Actualizar
           </Button>
           <LogoutApp />
         </fieldset>
+        <ModalComponent visible={modalVisible} onClose={closeModal} />
       </Card>
     </Container>
   );

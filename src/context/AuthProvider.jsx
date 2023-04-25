@@ -4,7 +4,6 @@ import { NavBar } from "../components/navBar/NavBar";
 import { BrowserRouter } from "react-router-dom";
 import { Footer } from "../components/footer/fotter";
 import { AppRouter } from "../router/AppRouter";
-import { CineList } from "../components/cartelera/CineList";
 
 const my_auth_app = "my_auth_app";
 
@@ -41,7 +40,6 @@ export const AuthProvider = () => {
       <BrowserRouter>
         <NavBar />
         <AppRouter />
-        {/* <CineList /> */}
         <Footer />
       </BrowserRouter>
     </AuthContext.Provider>
