@@ -17,16 +17,17 @@ import { IconButton } from "../components/IconButton";
 import { DeleteIcon } from "../components/DeleteIcon";
 import { EditIcon } from "../components/EditIcon";
 import { ModalComponent } from "../components/ModalComponent";
-import { useMovies } from "../hooks/useMovies";
 
 export const AdminPage = () => {
   const [peliculas, setPeliculas] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [modalVisible, setModalVisible] = useState(false);
 
+  const url = import.meta.env.VITE_FRONT_API;
+
   const agregarPelicula = async (pelicula) => {
     try {
-      const response = await fetch("http://51.222.31.16/api/v1/films", {
+      const response = await fetch(url, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -55,7 +56,7 @@ export const AdminPage = () => {
       if (result.isConfirmed) {
         fetch(
           `
-        http://51.222.31.16/api/v1/films/${id}
+        ${url}/${id}
         `,
           {
             method: "DELETE",
@@ -74,7 +75,7 @@ export const AdminPage = () => {
   const actualizarPeliculas = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch("http://51.222.31.16/api/v1/films");
+      const response = await fetch(url);
       const { items } = await response.json();
       if (JSON.stringify(peliculas) !== JSON.stringify(items)) {
         setPeliculas(items);

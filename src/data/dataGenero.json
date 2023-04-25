@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "name": "Acción"
+  },
+  {
+    "id": 2,
+    "name": "Aventura"
+  },
+  {
+    "id": 3,
+    "name": "Comedia"
+  },
+  {
+    "id": 4,
+    "name": "Drama"
+  },
+  {
+    "id": 5,
+    "name": "Ciencia ficción"
+  },
+  {
+    "id": 6,
+    "name": "Fantasía"
+  },
+  {
+    "id": 7,
+    "name": "Terror"
+  },
+  {
+    "id": 8,
+    "name": "Suspense"
+  },
+  {
+    "id": 9,
+    "name": "Misterio"
+  },
+  {
+    "id": 10,
+    "name": "Romance"
+  },
+  {
+    "id": 11,
+    "name": "Documental"
+  },
+  {
+    "id": 12,
+    "name": "Animación"
+  },
+  {
+    "id": 13,
+    "name": "Musical"
+  },
+  {
+    "id": 14,
+    "name": "Western"
+  },
+  {
+    "id": 15,
+    "name": "Histórico"
+  },
+  {
+    "id": 16,
+    "name": "Bélico"
+  },
+  {
+    "id": 17,
+    "name": "Crimen"
+  },
+  {
+    "id": 18,
+    "name": "Deportes"
+  },
+  {
+    "id": 19,
+    "name": "Familiar"
+  },
+  {
+    "id": 20,
+    "name": "Cine negro"
+  }
+]

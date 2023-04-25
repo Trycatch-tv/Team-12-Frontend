@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "name": "Acción y aventuras"
+  },
+  {
+    "id": 2,
+    "name": "Comedia"
+  },
+  {
+    "id": 3,
+    "name": "Drama"
+  },
+  {
+    "id": 4,
+    "name": "Ciencia ficción y fantasía"
+  },
+  {
+    "id": 5,
+    "name": "Terror"
+  },
+  {
+    "id": 6,
+    "name": "Suspense y misterio"
+  },
+  {
+    "id": 7,
+    "name": "Romance"
+  },
+  {
+    "id": 8,
+    "name": "Documentales"
+  },
+  {
+    "id": 9,
+    "name": "Animación"
+  },
+  {
+    "id": 10,
+    "name": "Musicales"
+  },
+  {
+    "id": 11,
+    "name": "Westerns"
+  },
+  {
+    "id": 12,
+    "name": "Películas de culto"
+  },
+  {
+    "id": 13,
+    "name": "Clásicas"
+  },
+  {
+    "id": 14,
+    "name": "Deportes"
+  },
+  {
+    "id": 15,
+    "name": "Acción"
+  },
+  {
+    "id": 16,
+    "name": "Crimen"
+  },
+  {
+    "id": 17,
+    "name": "Familiar"
+  },
+  {
+    "id": 18,
+    "name": "Guerra"
+  },
+  {
+    "id": 19,
+    "name": "Historia"
+  },
+  {
+    "id": 20,
+    "name": "Películas extranjeras"
+  }
+]

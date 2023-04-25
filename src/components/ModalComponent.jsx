@@ -1,197 +1,275 @@
-import { Modal, Button, Text, Input, Row, Checkbox } from "@nextui-org/react";
+import { Modal, Button, Text, Input, Loading } from "@nextui-org/react";
 import { useState } from "react";
+import dataGenero from "../data/dataGenero";
+import dataCategorias from "../data/dataCategorias";
+import "../styles/ModalComponent.css";
+import Swal from "sweetalert2";
 
 export const ModalComponent = ({ visible, onClose }) => {
   const [poster, setPoster] = useState("");
-  const [categoria, setCategoria] = useState("");
-  const [genero, setGenero] = useState("");
+  const [categoria, setCategoria] = useState("Categoria");
+  const [genero, setGenero] = useState("Genero");
   const [titulo, setTitulo] = useState("");
   const [sinopsis, setSinopsis] = useState("");
-  const [language, setLanguage] = useState("");
+  const [language, setLanguage] = useState("es");
   const [director, setDirector] = useState("");
   const [releaseDate, setReleaseDate] = useState("");
-  console.log("poster", poster);
+  const [isLoading, setIsLoading] = useState(false);
+  const [formErrors, setFormErrors] = useState({
+    // files: "",
+    titulo: "",
+    sinopsis: "",
+    director: "",
+    // release_date: "",
+  });
+
+  const url = import.meta.env.VITE_FRONT_API;
 
   const closeHandler = () => {
     onClose();
-    console.log("closed");
   };
 
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
-
-  //   const formData = new FormData();
-  //   formData.append("file", poster);
-  //   formData.append("categoryId", categoria);
-  //   formData.append("genderId", genero);
-  //   formData.append("title", titulo);
-  //   formData.append("sinopsis", sinopsis);
-  //   formData.append("language", language);
-  //   formData.append("director", director);
-  //   formData.append("release_date", releaseDate);
-
-  //   try {
-  //     const response = await fetch("http://51.222.31.16/api/v1/films", {
-  //       method: "POST",
-  //       body: formData,
-  //     });
-
-  //     const data = await response.json();
-  //     console.log(data);
-
-  //     // closeHandler();
-  //   } catch (error) {
-  //     console.error("Error al publicar la película: ", error);
-  //     // Aquí podrías mostrar un mensaje de error o hacer alguna otra acción
-  //   }
-  // };
-
   const handleSubmit = async (event) => {
-    // event.preventDefault();
+    const errors = {};
 
-    var formdata = new FormData();
-    formdata.append(
-      "file",
-      "/C:/Users/jaime/Downloads/sean-oulashin-KMn4VEeEPR8-unsplash.jpg"
-    );
-    formdata.append("categoryId", "1");
-    formdata.append("genderId", "2");
-    formdata.append("title", "Jaimefront");
-    formdata.append(
-      "sinopsis",
-      "ñlkjasdfñlkjasdf ñlkjasdfñlkj  ñlkjañlsdfkj ñlkjasdfñ lkj "
-    );
-    formdata.append("language", "es");
-    formdata.append("director", "Jaime test2");
-    formdata.append("release_date", "2023-04-03");
+    setIsLoading(true);
 
-    var requestOptions = {
-      method: "POST",
-      body: formdata,
-      redirect: "follow",
-    };
+    if (!poster) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Debes adjuntar el poster.",
+        className: "swal-modal",
+      });
+      setIsLoading(false);
+    }
 
-    fetch("http://51.222.31.16/api/v1/films", requestOptions)
-      .then((response) => response.text())
-      .then((result) => console.log(result))
-      .catch((error) => console.log("error", error));
+    if (!titulo) {
+      errors.titulo = "Debes indicar el titulo.";
+    }
+    if (!sinopsis) {
+      errors.sinopsis = "Debes indicar la sinpsis.";
+    }
+
+    if (!director) {
+      errors.director = "Debes indicar el director.";
+    }
+
+    // if (!release_date) {
+    //   errors.release_date = "Debe indicar la fecha.";
+    // }
+
+    setFormErrors(errors);
+
+    console.log("errors", errors);
+
+    if (Object.keys(errors).length > 0) {
+      setIsLoading(false);
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("file", poster);
+    formData.append("categoryId", categoria);
+    formData.append("genderId", genero);
+    formData.append("title", titulo);
+    formData.append("sinopsis", sinopsis);
+    formData.append("language", language);
+    formData.append("director", director);
+    formData.append("release_date", releaseDate);
+
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      Swal.fire({
+        icon: "success",
+        title: "Éxito",
+        text: "La película ha sido publicada exitosamente",
+      });
+
+      closeHandler();
+      setPoster("");
+      setCategoria("Categoria");
+      setGenero("Genero");
+      setTitulo("");
+      setSinopsis("");
+      setLanguage("es");
+      setDirector("");
+      setReleaseDate("");
+    } catch (error) {
+      console.error("Error al publicar la película: ", error);
+
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "No se pudo publicar la película. Por favor, inténtalo de nuevo más tarde",
+      });
+    }
   };
 
   return (
-    <div>
-      <Modal
-        closeButton
-        aria-labelledby="modal-title"
-        open={visible}
-        onClose={closeHandler}
-      >
-        <Modal.Header>
-          <Text id="modal-title" size={18}>
-            <Text b size={18}>
-              Bienvenido Agregar tu película
-            </Text>
+    <Modal
+      closeButton
+      aria-labelledby="modal-title"
+      open={visible}
+      onClose={closeHandler}
+      css={{
+        width: "96%",
+        margin: "0 auto",
+      }}
+    >
+      <Modal.Header>
+        <Text id="modal-title" size={18}>
+          <Text b size={18}>
+            Bienvenido Agrega tu película
           </Text>
-        </Modal.Header>
-        <Modal.Body>
-          <Input
-            aria-label="poster"
-            name="poster"
-            type="file"
-            clearable
-            bordered
-            fullWidth
-            color="primary"
-            size="lg"
-            placeholder="Poster"
-            onChange={(event) => setPoster(event.fileInput.files[0])}
-          />
-          <Input
-            aria-label="categoria"
-            name="categoria"
-            clearable
-            bordered
-            fullWidth
-            color="primary"
-            size="lg"
-            placeholder="Categoria"
-            onChange={(event) => setCategoria(event.target.value)}
-          />
-          <Input
-            aria-label="genero"
-            name="genero"
-            clearable
-            bordered
-            fullWidth
-            color="primary"
-            size="lg"
-            placeholder="Genero"
-            onChange={(event) => setGenero(event.target.value)}
-          />
-          <Input
-            aria-label="titulo"
-            name="titulo"
-            clearable
-            bordered
-            fullWidth
-            color="primary"
-            size="lg"
-            placeholder="Titulo"
-            onChange={(event) => setTitulo(event.target.value)}
-          />
-          <Input
-            aria-label="sinopsis"
-            name="sinopsis"
-            clearable
-            bordered
-            fullWidth
-            color="primary"
-            size="lg"
-            placeholder="Sinopsis"
-            onChange={(event) => setSinopsis(event.target.value)}
-          />
-          <Input
-            aria-label="language"
-            name="language"
-            clearable
-            bordered
-            fullWidth
-            color="primary"
-            size="lg"
-            placeholder="Lenguage"
-            onChange={(event) => setLanguage(event.target.value)}
-          />
-          <Input
-            aria-label="director"
-            name="director"
-            clearable
-            bordered
-            fullWidth
-            color="primary"
-            size="lg"
-            placeholder="Director"
-            onChange={(event) => setDirector(event.target.value)}
-          />
-          <Input
-            aria-label="release_date"
-            name="release_date"
-            clearable
-            bordered
-            fullWidth
-            color="primary"
-            size="lg"
-            placeholder="Año de lanzamiento"
-            onChange={(event) => setReleaseDate(event.target.value)}
-          />
-        </Modal.Body>
-        <Modal.Footer>
-          <Button auto flat color="error" onPress={closeHandler}>
-            Close
-          </Button>
+        </Text>
+      </Modal.Header>
+      <Modal.Body>
+        <Input
+          aria-label="poster"
+          name="file"
+          type="file"
+          clearable
+          bordered
+          fullWidth
+          color="primary"
+          size="lg"
+          placeholder="Poster"
+          onChangeCapture={(event) => {
+            if (event.target.files.length > 0) {
+              setPoster(event.target.files[0]);
+            }
+          }}
+          id="fileInput"
+        />
+        <select
+          className="select__modal"
+          defaultValue="Categoriaa"
+          native
+          onChange={(event) => setCategoria(event.target.value)}
+          value={categoria}
+          inputProps={{
+            name: "categoria",
+            id: "categoria",
+          }}
+        >
+          <option disabled>Categoria</option>
+          {dataCategorias.map((item) => (
+            <option key={item.id} value={item.id}>
+              {item.name}
+            </option>
+          ))}
+        </select>
+        <select
+          className="select__modal"
+          defaultValue="Genero"
+          native
+          onChange={(event) => setGenero(event.target.value)}
+          value={genero}
+          inputProps={{
+            name: "genero",
+            id: "genero",
+          }}
+        >
+          <option disabled>Genero</option>
+          {dataGenero.map((item) => (
+            <option key={item.id} value={item.id}>
+              {item.name}
+            </option>
+          ))}
+        </select>
+        <Input
+          type="Text"
+          aria-label="titulo"
+          name="titulo"
+          clearable
+          bordered
+          fullWidth
+          color="primary"
+          size="lg"
+          placeholder="Titulo"
+          onChange={(event) => setTitulo(event.target.value)}
+          helperText={formErrors.titulo}
+          helperColor="error"
+        />
+
+        <Input
+          type="Text"
+          aria-label="sinopsis"
+          name="sinopsis"
+          clearable
+          bordered
+          fullWidth
+          color="primary"
+          size="lg"
+          placeholder="Sinopsis"
+          onChange={(event) => setSinopsis(event.target.value)}
+          helperText={formErrors.sinopsis}
+          helperColor="error"
+        />
+        <Input
+          type="Text"
+          defaultValue={"es"}
+          value={language}
+          aria-label="language"
+          name="language"
+          clearable
+          bordered
+          fullWidth
+          color="primary"
+          size="lg"
+          placeholder="Lenguage"
+          onChange={(event) => setLanguage(event.target.value)}
+          helperText={formErrors.language}
+          helperColor="error"
+        />
+        <Input
+          aria-label="director"
+          name="director"
+          clearable
+          bordered
+          fullWidth
+          color="primary"
+          size="lg"
+          placeholder="Director"
+          onChange={(event) => setDirector(event.target.value)}
+          helperText={formErrors.director}
+          helperColor="error"
+        
+        />
+        <Input
+          type="Date"
+          aria-label="release_date"
+          name="release_date"
+          bordered
+          fullWidth
+          color="primary"
+          size="lg"
+          placeholder="Año de lanzamiento"
+          onChange={(event) => setReleaseDate(event.target.value)}
+          helperText={formErrors.date}
+          helperColor="error"
+        />
+      </Modal.Body>
+      <Modal.Footer>
+        <Button auto flat color="error" onPress={closeHandler}>
+          Close
+        </Button>
+
+        {isLoading ? (
+          <Loading />
+        ) : (
           <Button auto onPress={(event) => handleSubmit(event)}>
             Send
           </Button>
-        </Modal.Footer>
-      </Modal>
-    </div>
+        )}
+      </Modal.Footer>
+    </Modal>
   );
 };

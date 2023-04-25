@@ -1,0 +1,30 @@
+.select__modal {
+  width: 100%;
+  border-radius: 0.875rem;
+  border: solid 2px #d7d7d7;
+  color: #746f6f;
+  height: 44px;
+  padding: 0 0.5rem;
+}
+
+.swal2-container {
+  z-index: 9999 !important;
+}
+
+#fileInput {
+  margin: 0 auto;
+  padding: 5px;
+}
+
+#nextui-modal
+  > div
+  > div.nextui-c-grJsex.nextui-c-grJsex-dKXqQt-animated-true.nextui-c-grJsex-ikUaMfZ-css.nextui-backdrop-content
+  > section
+  > div.nextui-c-iDzHRq.nextui-c-iDzHRq-drcJWu-autoMargin-true.nextui-modal-body.nextui-modal-body-auto-margin
+  > div:nth-child(4)
+  > div.nextui-c-gJvMas.nextui-c-gJvMas-bDGmTT-withValue-true.nextui-input-helper-text-container
+  > p {
+  color: green;
+  margin-top: 0;
+  border: solid 1px ;
+}
