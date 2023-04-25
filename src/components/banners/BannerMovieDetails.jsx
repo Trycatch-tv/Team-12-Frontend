@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import "./bannerMovie.css";
 
 export const BannerMovieDetails = ({ movie }) => {
-  console.log("BannerMovieDetails:", movie);
   const hasMovies =
     typeof movie === "object" &&
     movie !== null &&

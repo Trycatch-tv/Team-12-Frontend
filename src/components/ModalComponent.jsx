@@ -2,8 +2,8 @@ import { Modal, Button, Text, Input, Loading } from "@nextui-org/react";
 import { useState } from "react";
 import dataGenero from "../data/dataGenero";
 import dataCategorias from "../data/dataCategorias";
-import "../styles/ModalComponent.css";
 import Swal from "sweetalert2";
+import "../styles/ModalComponent.css";
 
 export const ModalComponent = ({ visible, onClose }) => {
   const [poster, setPoster] = useState("");
@@ -16,11 +16,10 @@ export const ModalComponent = ({ visible, onClose }) => {
   const [releaseDate, setReleaseDate] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [formErrors, setFormErrors] = useState({
-    // files: "",
     titulo: "",
     sinopsis: "",
     director: "",
-    // release_date: "",
+    releaseDate: "",
   });
 
   const url = import.meta.env.VITE_FRONT_API;
@@ -39,9 +38,15 @@ export const ModalComponent = ({ visible, onClose }) => {
         icon: "error",
         title: "Oops...",
         text: "Debes adjuntar el poster.",
-        className: "swal-modal",
       });
       setIsLoading(false);
+    }
+    if (categoria === "Categoria") {
+      errors.categoria = "Debes seleccionar una categoría";
+    }
+
+    if (genero === "Genero") {
+      errors.genero = "Debes seleccionar un género";
     }
 
     if (!titulo) {
@@ -55,13 +60,11 @@ export const ModalComponent = ({ visible, onClose }) => {
       errors.director = "Debes indicar el director.";
     }
 
-    // if (!release_date) {
-    //   errors.release_date = "Debe indicar la fecha.";
-    // }
+    if (!releaseDate) {
+      errors.releaseDate = "Debes indicar la fecha.";
+    }
 
     setFormErrors(errors);
-
-    console.log("errors", errors);
 
     if (Object.keys(errors).length > 0) {
       setIsLoading(false);
@@ -102,8 +105,6 @@ export const ModalComponent = ({ visible, onClose }) => {
       setDirector("");
       setReleaseDate("");
     } catch (error) {
-      console.error("Error al publicar la película: ", error);
-
       Swal.fire({
         icon: "error",
         title: "Error",
@@ -130,12 +131,15 @@ export const ModalComponent = ({ visible, onClose }) => {
           </Text>
         </Text>
       </Modal.Header>
-      <Modal.Body>
+      <Modal.Body
+        css={{
+          gap: "0.5rem",
+        }}
+      >
         <Input
           aria-label="poster"
           name="file"
           type="file"
-          clearable
           bordered
           fullWidth
           color="primary"
@@ -150,14 +154,10 @@ export const ModalComponent = ({ visible, onClose }) => {
         />
         <select
           className="select__modal"
-          defaultValue="Categoriaa"
           native
           onChange={(event) => setCategoria(event.target.value)}
           value={categoria}
-          inputProps={{
-            name: "categoria",
-            id: "categoria",
-          }}
+          required
         >
           <option disabled>Categoria</option>
           {dataCategorias.map((item) => (
@@ -166,16 +166,14 @@ export const ModalComponent = ({ visible, onClose }) => {
             </option>
           ))}
         </select>
+        {formErrors.categoria && (
+          <p className="error-message">{formErrors.categoria}</p>
+        )}
         <select
-          className="select__modal"
-          defaultValue="Genero"
+          className="select__modal down"
           native
           onChange={(event) => setGenero(event.target.value)}
           value={genero}
-          inputProps={{
-            name: "genero",
-            id: "genero",
-          }}
         >
           <option disabled>Genero</option>
           {dataGenero.map((item) => (
@@ -184,8 +182,11 @@ export const ModalComponent = ({ visible, onClose }) => {
             </option>
           ))}
         </select>
+        {formErrors.categoria && (
+          <p className="error-message">{formErrors.categoria}</p>
+        )}
         <Input
-          type="Text"
+          type="text"
           aria-label="titulo"
           name="titulo"
           clearable
@@ -197,10 +198,14 @@ export const ModalComponent = ({ visible, onClose }) => {
           onChange={(event) => setTitulo(event.target.value)}
           helperText={formErrors.titulo}
           helperColor="error"
+          css={{
+            margin: "0",
+            marginTop: "0.5rem",
+          }}
         />
 
         <Input
-          type="Text"
+          type="text"
           aria-label="sinopsis"
           name="sinopsis"
           clearable
@@ -212,11 +217,15 @@ export const ModalComponent = ({ visible, onClose }) => {
           onChange={(event) => setSinopsis(event.target.value)}
           helperText={formErrors.sinopsis}
           helperColor="error"
+          css={{
+            margin: "0",
+            marginTop: "0.5rem",
+          }}
         />
         <Input
-          type="Text"
-          defaultValue={"es"}
+          type="text"
           value={language}
+          onChange={(event) => setLanguage(event.target.value)}
           aria-label="language"
           name="language"
           clearable
@@ -225,9 +234,12 @@ export const ModalComponent = ({ visible, onClose }) => {
           color="primary"
           size="lg"
           placeholder="Lenguage"
-          onChange={(event) => setLanguage(event.target.value)}
           helperText={formErrors.language}
           helperColor="error"
+          css={{
+            margin: "0",
+            marginTop: "0.5rem",
+          }}
         />
         <Input
           aria-label="director"
@@ -241,20 +253,27 @@ export const ModalComponent = ({ visible, onClose }) => {
           onChange={(event) => setDirector(event.target.value)}
           helperText={formErrors.director}
           helperColor="error"
-        
+          css={{
+            margin: "0",
+            marginTop: "0.5rem",
+          }}
         />
         <Input
-          type="Date"
+          type="date"
           aria-label="release_date"
-          name="release_date"
+          name="releaseDate"
           bordered
           fullWidth
           color="primary"
           size="lg"
           placeholder="Año de lanzamiento"
           onChange={(event) => setReleaseDate(event.target.value)}
-          helperText={formErrors.date}
+          helperText={formErrors.releaseDate}
           helperColor="error"
+          css={{
+            margin: "0",
+            marginTop: "0.5rem",
+          }}
         />
       </Modal.Body>
       <Modal.Footer>

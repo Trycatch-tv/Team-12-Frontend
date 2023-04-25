@@ -5,6 +5,7 @@
   color: #746f6f;
   height: 44px;
   padding: 0 0.5rem;
+  margin: 0;
 }
 
 .swal2-container {
@@ -21,10 +22,44 @@
   > div.nextui-c-grJsex.nextui-c-grJsex-dKXqQt-animated-true.nextui-c-grJsex-ikUaMfZ-css.nextui-backdrop-content
   > section
   > div.nextui-c-iDzHRq.nextui-c-iDzHRq-drcJWu-autoMargin-true.nextui-modal-body.nextui-modal-body-auto-margin
-  > div:nth-child(4)
-  > div.nextui-c-gJvMas.nextui-c-gJvMas-bDGmTT-withValue-true.nextui-input-helper-text-container
-  > p {
-  color: green;
-  margin-top: 0;
-  border: solid 1px ;
+  > div:nth-child(6)
+  > div.nextui-c-gJvMas.nextui-c-gJvMas-bDGmTT-withValue-true.nextui-input-helper-text-container {
+  margin-bottom: 10px;
+}
+
+#nextui-modal
+  > div
+  > div.nextui-c-grJsex.nextui-c-grJsex-dKXqQt-animated-true.nextui-c-grJsex-ikUaMfZ-css.nextui-backdrop-content
+  > section
+  > div.nextui-c-iDzHRq.nextui-c-iDzHRq-drcJWu-autoMargin-true.nextui-modal-body.nextui-modal-body-auto-margin
+  > div:nth-child(7)
+  > div.nextui-c-gJvMas.nextui-c-gJvMas-bDGmTT-withValue-true.nextui-input-helper-text-container {
+  margin-bottom: 10px;
+}
+
+#nextui-modal
+  > div
+  > div.nextui-c-grJsex.nextui-c-grJsex-dKXqQt-animated-true.nextui-c-grJsex-ikUaMfZ-css.nextui-backdrop-content
+  > section
+  > div.nextui-c-iDzHRq.nextui-c-iDzHRq-drcJWu-autoMargin-true.nextui-modal-body.nextui-modal-body-auto-margin
+  > div:nth-child(9)
+  > div.nextui-c-gJvMas.nextui-c-gJvMas-bDGmTT-withValue-true.nextui-input-helper-text-container {
+  margin-bottom: 10px;
+}
+#nextui-modal
+  > div
+  > div.nextui-c-grJsex.nextui-c-grJsex-dKXqQt-animated-true.nextui-c-grJsex-ikUaMfZ-css.nextui-backdrop-content
+  > section
+  > div.nextui-c-iDzHRq.nextui-c-iDzHRq-drcJWu-autoMargin-true.nextui-modal-body.nextui-modal-body-auto-margin
+  > div:nth-child(10)
+  > div.nextui-c-gJvMas.nextui-c-gJvMas-bDGmTT-withValue-true.nextui-input-helper-text-container {
+  margin-bottom: 10px;
+}
+
+.error-message {
+  color: #f31260;
+  font-size: 10px;
+  margin: 0;
+  margin-top: -0.5rem;
+  margin-left: 0.5rem;
 }

@@ -17,30 +17,16 @@ import { IconButton } from "../components/IconButton";
 import { DeleteIcon } from "../components/DeleteIcon";
 import { EditIcon } from "../components/EditIcon";
 import { ModalComponent } from "../components/ModalComponent";
+import { getMovies } from "../api/getMovies";
+import { useMovies } from "../hooks/useMovies";
 
 export const AdminPage = () => {
-  const [peliculas, setPeliculas] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
   const [modalVisible, setModalVisible] = useState(false);
+  const search = "";
+  const sort = "";
+  const { getMovies, loading, movies } = useMovies({ search, sort });
 
   const url = import.meta.env.VITE_FRONT_API;
-
-  const agregarPelicula = async (pelicula) => {
-    try {
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(pelicula),
-      });
-      const nuevaPelicula = await response.json();
-      setPeliculas([...peliculas, nuevaPelicula]);
-      console.log("Pelicula agregada exitosamente");
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   const eliminarPelicula = (id) => {
     console.log("Eliminar reserva", id);
@@ -63,7 +49,7 @@ export const AdminPage = () => {
           }
         )
           .then(() => {
-            actualizarPeliculas();
+            getMovies({ search: null });
             console.log("Reserva eliminada exitosamente");
           })
           .catch((error) => console.error(error));
@@ -72,72 +58,9 @@ export const AdminPage = () => {
     });
   };
 
-  const actualizarPeliculas = async () => {
-    setIsLoading(true);
-    try {
-      const response = await fetch(url);
-      const { items } = await response.json();
-      if (JSON.stringify(peliculas) !== JSON.stringify(items)) {
-        setPeliculas(items);
-        console.log("Listado actualizado");
-      }
-      setIsLoading(false);
-    } catch (error) {
-      console.error(error);
-      setIsLoading(false);
-    }
-  };
-
   useEffect(() => {
-    actualizarPeliculas();
-  }, []);
-
-  // const search = "";
-  // const sort = "";
-  // const { movies, getMovies, loading } = useMovies({ search, sort });
-  // console.log("admin:", movies);
-  // const options = { year: "numeric", month: "short", day: "numeric" };
-
-  // const actualizarPeliculas = () => {
-  //   getMovies({ search: null });
-  //   console.log("Listado actualizado");
-  // };
-
-  // useEffect(() => {
-  //   getMovies({ search: null });
-  //   setPeliculas(movies);
-  //   setIsLoading(false);
-  // }, [movies]);
-
-  // const eliminarPelicula = (id) => {
-  //   console.log("Eliminar reserva", id);
-  //   Swal.fire({
-  //     title: "Are you sure?",
-  //     text: "You won't be able to revert this!",
-  //     icon: "warning",
-  //     showCancelButton: true,
-  //     confirmButtonColor: "#3085d6",
-  //     cancelButtonColor: "#d33",
-  //     confirmButtonText: "Yes, delete it!",
-  //   }).then((result) => {
-  //     if (result.isConfirmed) {
-  //       fetch(
-  //         `
-  //       http://51.222.31.16/api/v1/films/${id}
-  //       `,
-  //         {
-  //           method: "DELETE",
-  //         }
-  //       )
-  //         .then(() => {
-  //           actualizarPeliculas();
-  //           console.log("Reserva eliminada exitosamente");
-  //         })
-  //         .catch((error) => console.error(error));
-  //       Swal.fire("Deleted!", "Your file has been deleted.", "success");
-  //     }
-  //   });
-  // };
+    getMovies({ search: null });
+  }, [movies]);
 
   const closeModal = () => {
     setModalVisible(false);
@@ -148,9 +71,9 @@ export const AdminPage = () => {
   };
 
   const columns = [
-    { name: "Titulo", uid: "title" },
+    { name: "Titulo", uid: "titulo" },
     { name: "Director", uid: "director" },
-    { name: "Año", uid: "release_date" },
+    { name: "Año", uid: "año" },
     { name: "Editar", uid: "actions" },
   ];
 
@@ -177,11 +100,7 @@ export const AdminPage = () => {
               </Tooltip>
             </Col>
             <Col css={{ d: "flex" }}>
-              <Tooltip
-                content="Delete user"
-                color="error"
-                // onClick={() => console.log("Delete user", user.id)}
-              >
+              <Tooltip content="Delete user" color="error">
                 <IconButton
                   onClick={() => eliminarPelicula(item.id)}
                   color="error"
@@ -207,7 +126,7 @@ export const AdminPage = () => {
       }}
     >
       <Text h3>Listado de Peliculas</Text>
-      {isLoading && <Loading />}
+      {loading && <Loading />}
       <Table
         aria-label="Tabla de listado de películas"
         css={{
@@ -231,7 +150,7 @@ export const AdminPage = () => {
           )}
         </Table.Header>
         <Table.Body>
-          {peliculas?.map((pelicula) => (
+          {movies?.map((pelicula) => (
             <Table.Row key={pelicula.id}>
               {columns.map((column) => (
                 <Table.Cell
@@ -260,7 +179,7 @@ export const AdminPage = () => {
           <Button onPress={openModal} css={{ maxW: "40%" }}>
             Agregar pelicula
           </Button>
-          <Button onPress={actualizarPeliculas} css={{ maxW: "40%" }}>
+          <Button onPress={getMovies} css={{ maxW: "40%" }}>
             Actualizar
           </Button>
           <LogoutApp />
