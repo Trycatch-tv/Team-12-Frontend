@@ -30,7 +30,6 @@ export const BannerMovieDetails = ({ movie }) => {
     }
   }, [hasMovies, movie]);
 
-
   return (
     <>
       {hasMovies ? (
@@ -48,9 +47,15 @@ export const BannerMovieDetails = ({ movie }) => {
             )}
           </li>
           <li className="info">
-            <p>Director: {movie.director}</p>
-            <p>Fecha de lanzamiento: {movie.release_date}</p>
-            <p>Sinopsis: {movie.sinopsis}</p>
+            <p>
+              <b>Director:</b> {movie.director}
+            </p>
+            <b>
+              <p>Fecha de lanzamiento: {movie.release_date}</p>
+            </b>
+            <p>
+              <b>Sinopsis:</b> {movie.sinopsis}
+            </p>
           </li>
         </ul>
       ) : (

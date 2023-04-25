@@ -1,10 +1,4 @@
-<!-- RewriteEngine On
+RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.\*)$ /index.html [L,QSA] -->
-
-<IfModule mod_rewrite.c>
-RewriteEngine On
-RewriteRule ^$ public/ [L]
-RewriteRule ^(.*)$ public/$1 [L]
-</IfModule>
+RewriteRule ^(.\*)$ /index.html [L,QSA]
