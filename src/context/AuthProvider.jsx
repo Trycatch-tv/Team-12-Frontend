@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { AuthContext } from "./authContext";
 import { NavBar } from "../components/navBar/NavBar";
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import { Footer } from "../components/footer/fotter";
 import { AppRouter } from "../router/AppRouter";
 
@@ -37,11 +37,11 @@ export const AuthProvider = () => {
 
   return (
     <AuthContext.Provider value={value}>
-      <BrowserRouter>
+      <HashRouter>
         <NavBar />
         <AppRouter />
         <Footer />
-      </BrowserRouter>
+      </HashRouter>
     </AuthContext.Provider>
   );
 };
