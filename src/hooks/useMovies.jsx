@@ -23,7 +23,6 @@ export const useMovies = ({ search, sort }) => {
     }
   }, []);
 
-
   const sortMovies = useMemo(() => {
     if (sort === "Género") {
       return movies;

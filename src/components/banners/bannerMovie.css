@@ -4,7 +4,7 @@
   -webkit-box-shadow: 25px 27px 31px -10px rgba(0, 0, 0, 0.44);
   -moz-box-shadow: 25px 27px 31px -10px rgba(0, 0, 0, 0.44);
   box-shadow: 25px 27px 31px -10px rgba(0, 0, 0, 0.44);
-
+  margin-top: 1rem;
   transition: 0.3s;
 }
 

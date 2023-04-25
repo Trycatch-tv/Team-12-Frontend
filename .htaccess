@@ -1,7 +1,7 @@
-<!-- RewriteEngine On
+RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.\*)$ /index.html [L,QSA] -->
+RewriteRule ^(.\*)$ /index.html [L,QSA]
 
 <!-- <IfModule mod_rewrite.c>
 
@@ -15,10 +15,10 @@ RewriteRule ^(.\*)$ /index.html [L,QSA] -->
 
 </IfModule> -->
 
-
+<!--
 RewriteEngine On
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://colfilmsdevelop.onrender.com/$1 [L,R=301]
 
 RewriteCond %{HTTP_HOST} !^www\.
-RewriteRule ^(.*)$ https://colfilmsdevelop.onrender.com/$1 [L,R=301]
+RewriteRule ^(.*)$ https://colfilmsdevelop.onrender.com//$1 [L,R=301] -->
