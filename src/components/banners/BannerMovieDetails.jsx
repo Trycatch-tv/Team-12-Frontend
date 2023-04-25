@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import "./bannerMovie.css";
 
 export const BannerMovieDetails = ({ movie }) => {
+  console.log("BannerMovieDetails:", movie);
   const hasMovies =
     typeof movie === "object" &&
     movie !== null &&
@@ -30,6 +31,7 @@ export const BannerMovieDetails = ({ movie }) => {
     }
   }, [hasMovies, movie]);
 
+
   return (
     <>
       {hasMovies ? (
@@ -37,7 +39,7 @@ export const BannerMovieDetails = ({ movie }) => {
           <li className="movie">
             <h4>{movie.title}</h4>
             {loaded && bannerUrl ? (
-              <img className="banner 1" src={bannerUrl} alt={movies.titulo} />
+              <img className="banner 1" src={bannerUrl} alt={movie.titulo} />
             ) : (
               <img
                 className="banner 2"

@@ -42,6 +42,7 @@ export const CineList = () => {
     debonceGetMovies(newSearch);
   };
 
+
   return (
     <main className="containerListCartelera">
       <form className="searchSection" onSubmit={handleSubmit}>
