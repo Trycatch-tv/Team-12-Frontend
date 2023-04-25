@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { BannerMovieDetails } from "../components/banners/BannerMovieDetails";
 import { getMovieId } from "../api/getMovieId";
+import { Loading } from "@nextui-org/react";
 
 export const Pdp = () => {
   const { id } = useParams();
@@ -15,7 +16,7 @@ export const Pdp = () => {
   }, [id]);
 
   if (!movie) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   return <BannerMovieDetails movie={movie} />;
