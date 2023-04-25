@@ -5,6 +5,6 @@ RewriteRule ^(.\*)$ /index.html [L,QSA] -->
 
 <IfModule mod_rewrite.c>
 RewriteEngine On
-RewriteRule ^$ dist/ [L]
-RewriteRule ^(.*)$ dist/$1 [L]
+RewriteRule ^$ public/ [L]
+RewriteRule ^(.*)$ public/$1 [L]
 </IfModule>
