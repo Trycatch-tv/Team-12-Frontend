@@ -2,6 +2,9 @@ import React from "react";
 import { Card, Grid, Text, Image, Row, Spacer } from "@nextui-org/react";
 import { Link } from "react-router-dom";
 import "../styles/generalStyles.css";
+import LinkedinIcon from "../assets/icon/LinkedinIcon";
+import GitHubIcon from "../assets/icon/GitHubIcon";
+import GmailIcon from "../assets/icon/GmailIcon";
 
 export const DevelopCards = ({ ...info }) => {
   const imgURL = (url) => {
@@ -57,6 +60,7 @@ export const DevelopCards = ({ ...info }) => {
               css={{
                 color: "rgb(80 84 86)",
                 marginBottom: "0",
+                marginTop: "0.5rem",
               }}
               weight="bold"
             >
@@ -68,8 +72,8 @@ export const DevelopCards = ({ ...info }) => {
               textAlign: "center",
               justifyContent: "center",
               alignItems: "flex-start",
-              padding: "10px",
-              width: "fit-content",
+              padding: "0 10px 10px 10px",
+              width: "100%",
             }}
           >
             <Row
@@ -78,7 +82,6 @@ export const DevelopCards = ({ ...info }) => {
               css={{
                 flexDirection: "column",
                 width: "100%",
-                alignItems: "flex-start",
               }}
             >
               <Text
@@ -89,17 +92,34 @@ export const DevelopCards = ({ ...info }) => {
               >
                 Rol: {info.title}
               </Text>
-              <Text
+              <Row
+                justify="center"
+                align="center"
                 css={{
-                  color: "rgb(80 84 86)",
+                  display: "flex",
+                  width: "100%",
+                  alignItems: "center",
+                  justifyContent: "space-evenly",
+                  marginTop: "10px",
+                  flexDirection: "row",
                 }}
               >
                 {info.linkedin ? (
                   <Link to={info.linkedin} target="_blank">
-                    LinkedIn
+                    <LinkedinIcon />
                   </Link>
                 ) : null}
-              </Text>
+                {info.github ? (
+                  <Link to={info.github} target="_blank">
+                    <GitHubIcon />
+                  </Link>
+                ) : null}
+                {info.email ? (
+                  <Link to={`mailto:${info.email}`} target="_blank">
+                    <GmailIcon />
+                  </Link>
+                ) : null}
+              </Row>
             </Row>
           </Card.Footer>
         </Card>
