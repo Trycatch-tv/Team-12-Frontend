@@ -1,0 +1,20 @@
+[
+  {
+    "image": "mateo",
+    "name": "Mateo Londono",
+    "title": "Team lead",
+    "linkedin": "https://www.linkedin.com/in/anderson-eduardo-ar%C3%A9valo-ram%C3%ADrez-2b5768bb/"
+  },
+  {
+    "image": "JaimeSanchezGalvis",
+    "name": "Jaime Sanchez Galvis",
+    "title": "Front End & Team Leader",
+    "linkedin": "https://www.linkedin.com/in/jaimesanchezgalvis/"
+  },
+  {
+    "image": "andres",
+    "name": "Andres Lobaton",
+    "title": "Back End Developer",
+    "linkedin": "https://www.linkedin.com/in/aflobaton/"
+  }
+]
