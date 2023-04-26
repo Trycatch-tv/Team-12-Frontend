@@ -4,7 +4,7 @@
   -webkit-box-shadow: 25px 27px 31px -10px rgba(0, 0, 0, 0.44);
   -moz-box-shadow: 25px 27px 31px -10px rgba(0, 0, 0, 0.44);
   box-shadow: 25px 27px 31px -10px rgba(0, 0, 0, 0.44);
-
+  margin-top: 1rem;
   transition: 0.3s;
 }
 
@@ -29,6 +29,7 @@
   width: fit-content;
   margin: 0 auto;
   padding: 2rem;
+  max-width: 1200px;
 }
 .details li {
   list-style: none;
@@ -47,7 +48,6 @@
   padding: 1rem;
   padding-top: 2.5rem;
   width: 100%;
-  max-width: 900px;
 }
 .movie h4 {
   overflow: hidden;
@@ -72,5 +72,4 @@
     flex-direction: column;
     align-items: center;
   }
-
 }

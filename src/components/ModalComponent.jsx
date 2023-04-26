@@ -1,8 +1,9 @@
-import { Modal, Button, Text, Input, Loading } from "@nextui-org/react";
 import { useState } from "react";
+import { Modal, Button, Text, Input, Loading } from "@nextui-org/react";
 import dataGenero from "../data/dataGenero";
 import dataCategorias from "../data/dataCategorias";
-import Swal from "sweetalert2";
+import { validateFields } from "../helpers/validateFields";
+import { handleFormSubmit } from "../helpers/handleFormSubmit ";
 import "../styles/ModalComponent.css";
 
 export const ModalComponent = ({ visible, onClose }) => {
@@ -22,47 +23,21 @@ export const ModalComponent = ({ visible, onClose }) => {
     releaseDate: "",
   });
 
-  const url = import.meta.env.VITE_FRONT_API;
-
   const closeHandler = () => {
     onClose();
   };
 
   const handleSubmit = async (event) => {
-    const errors = {};
-
-    setIsLoading(true);
-
-    if (!poster) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Debes adjuntar el poster.",
-      });
-      setIsLoading(false);
-    }
-    if (categoria === "Categoria") {
-      errors.categoria = "Debes seleccionar una categoría";
-    }
-
-    if (genero === "Genero") {
-      errors.genero = "Debes seleccionar un género";
-    }
-
-    if (!titulo) {
-      errors.titulo = "Debes indicar el titulo.";
-    }
-    if (!sinopsis) {
-      errors.sinopsis = "Debes indicar la sinpsis.";
-    }
-
-    if (!director) {
-      errors.director = "Debes indicar el director.";
-    }
-
-    if (!releaseDate) {
-      errors.releaseDate = "Debes indicar la fecha.";
-    }
+    const errors = validateFields({
+      poster,
+      categoria,
+      genero,
+      titulo,
+      sinopsis,
+      director,
+      releaseDate,
+      setIsLoading,
+    });
 
     setFormErrors(errors);
 
@@ -71,46 +46,26 @@ export const ModalComponent = ({ visible, onClose }) => {
       return;
     }
 
-    const formData = new FormData();
-    formData.append("file", poster);
-    formData.append("categoryId", categoria);
-    formData.append("genderId", genero);
-    formData.append("title", titulo);
-    formData.append("sinopsis", sinopsis);
-    formData.append("language", language);
-    formData.append("director", director);
-    formData.append("release_date", releaseDate);
-
-    try {
-      const response = await fetch(url, {
-        method: "POST",
-        body: formData,
-      });
-
-      const data = await response.json();
-
-      Swal.fire({
-        icon: "success",
-        title: "Éxito",
-        text: "La película ha sido publicada exitosamente",
-      });
-
-      closeHandler();
-      setPoster("");
-      setCategoria("Categoria");
-      setGenero("Genero");
-      setTitulo("");
-      setSinopsis("");
-      setLanguage("es");
-      setDirector("");
-      setReleaseDate("");
-    } catch (error) {
-      Swal.fire({
-        icon: "error",
-        title: "Error",
-        text: "No se pudo publicar la película. Por favor, inténtalo de nuevo más tarde",
-      });
-    }
+    handleFormSubmit({
+      poster,
+      categoria,
+      genero,
+      titulo,
+      sinopsis,
+      language,
+      director,
+      releaseDate,
+      setIsLoading,
+      closeHandler,
+      setPoster,
+      setCategoria,
+      setGenero,
+      setTitulo,
+      setSinopsis,
+      setLanguage,
+      setDirector,
+      setReleaseDate,
+    });
   };
 
   return (

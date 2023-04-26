@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { LogoutApp } from "../components/LogoutApp";
 import {
   Table,
@@ -18,17 +18,17 @@ import { DeleteIcon } from "../components/DeleteIcon";
 import { EditIcon } from "../components/EditIcon";
 import { ModalComponent } from "../components/ModalComponent";
 import { useMovies } from "../hooks/useMovies";
+import { deleteMovie } from "../api/deleteMovie";
 
 export const AdminPage = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const search = "";
   const sort = "";
+  const [movieDeleted, setMovieDeleted] = useState(false);
+
   const { getMovies, loading, movies } = useMovies({ search, sort });
 
-  const url = import.meta.env.VITE_FRONT_API;
-
   const eliminarPelicula = (id) => {
-    console.log("Eliminar reserva", id);
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -39,27 +39,33 @@ export const AdminPage = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(
-          `
-        ${url}/${id}
-        `,
-          {
-            method: "DELETE",
-          }
-        )
+        deleteMovie(id)
           .then(() => {
-            getMovies({ search: null });
-            console.log("Reserva eliminada exitosamente");
+            Swal.fire("Deleted!", "Your file has been deleted.", "success");
+            setMovieDeleted(true);
           })
-          .catch((error) => console.error(error));
-        Swal.fire("Deleted!", "Your file has been deleted.", "success");
+          .catch((error) => {
+            console.error(error);
+            Swal.fire(
+              "Error!",
+              "There was an error deleting the movie.",
+              "error"
+            );
+          });
       }
     });
   };
 
   useEffect(() => {
     getMovies({ search: null });
-  }, [movies]);
+  }, []);
+
+  useEffect(() => {
+    if (movieDeleted) {
+      getMovies({ search: null });
+      setMovieDeleted(false);
+    }
+  }, [movieDeleted, getMovies]);
 
   const closeModal = () => {
     setModalVisible(false);
