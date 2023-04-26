@@ -2,19 +2,26 @@
   {
     "image": "mateo",
     "name": "Mateo Agudelo",
-    "title": "Team lead",
-    "linkedin": "https://www.linkedin.com/in/mateo-ag"
+    "title": "Team leader",
+    "linkedin": "https://www.linkedin.com/in/mateo-ag",
+    "github": ".",
+    "email": "."
   },
   {
     "image": "JaimeSanchezGalvis",
     "name": "Jaime Sanchez Galvis",
-    "title": "Front End & Team Leader",
-    "linkedin": "https://www.linkedin.com/in/jaimesanchezgalvis/"
+    "title": "Front End Developer",
+    "linkedin": "https://www.linkedin.com/in/jaimesanchezgalvis/",
+    "github": "https://github.com/Jaimesanchezgalvis",
+    "email": "jaimesanchezgalvis@gmail.com"
   },
+
   {
     "image": "andres",
     "name": "Andres Lobaton",
     "title": "Back End Developer",
-    "linkedin": "https://www.linkedin.com/in/aflobaton/"
+    "linkedin": "https://www.linkedin.com/in/aflobaton/",
+    "github": "https://github.com/Lobaton2020",
+    "email": "andrespipe021028@gmail.com"
   }
 ]
