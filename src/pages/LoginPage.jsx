@@ -8,6 +8,12 @@ export const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+    const handleKeyDown = (e) => {
+      if (e.keyCode === 13) {
+        handleLogin();
+      }
+    };
+
   const handleLogin = () => {
     if (username === "admin" && password === "team12") {
       login();
@@ -41,6 +47,7 @@ export const LoginPage = () => {
             label="Username"
             placeholder="Enter your username"
             css={{ width: "100%" }}
+            onKeyDown={handleKeyDown}
           />
         </Grid>
         <Grid css={{ width: "100%" }}>
@@ -54,6 +61,7 @@ export const LoginPage = () => {
             label="Password"
             placeholder="Enter your password"
             css={{ width: "100%" }}
+            onKeyDown={handleKeyDown}
           />
         </Grid>
         <Grid>

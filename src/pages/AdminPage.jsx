@@ -12,10 +12,8 @@ import {
   Tooltip,
 } from "@nextui-org/react";
 import Swal from "sweetalert2";
-
 import { IconButton } from "../components/IconButton";
 import { DeleteIcon } from "../components/DeleteIcon";
-import { EditIcon } from "../components/EditIcon";
 import { ModalComponent } from "../components/ModalComponent";
 import { useMovies } from "../hooks/useMovies";
 import { deleteMovie } from "../api/deleteMovie";
@@ -79,7 +77,7 @@ export const AdminPage = () => {
     { name: "Titulo", uid: "titulo" },
     { name: "Director", uid: "director" },
     { name: "Año", uid: "año" },
-    { name: "Editar", uid: "actions" },
+    { name: "Borrar", uid: "actions" },
   ];
 
   const renderCell = (item, columnKey) => {
@@ -97,15 +95,8 @@ export const AdminPage = () => {
       case "actions":
         return (
           <Row justify="center" align="center">
-            <Col css={{ d: "flex" }}>
-              <Tooltip content="Edit user">
-                <IconButton onClick={() => console.log("Edit user")}>
-                  <EditIcon size={20} fill="#979797" />
-                </IconButton>
-              </Tooltip>
-            </Col>
-            <Col css={{ d: "flex" }}>
-              <Tooltip content="Delete user" color="error">
+            <Col css={{ d: "flex", cursor: "default" }}>
+              <Tooltip content="Delete movie" color="error">
                 <IconButton
                   onClick={() => eliminarPelicula(item.id)}
                   color="error"
