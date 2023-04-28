@@ -1,12 +1,11 @@
 import { Button, Link } from "@nextui-org/react";
-import { useContext } from "react";
-import { AuthContext } from "../context/authContext";
+import { useAuth } from "../hooks";
 
 export const LogoutApp = () => {
-  const { logout } = useContext(AuthContext);
+  const { onLogout } = useAuth();
 
   const handleLogout = () => {
-    logout();
+    onLogout();
   };
 
   return (

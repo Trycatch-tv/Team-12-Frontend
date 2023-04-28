@@ -1,9 +1,10 @@
 import { useContext } from "react";
 import { Navigate, Outlet } from "react-router-dom";
-import { AuthContext } from "../context/authContext";
+import { AuthContext } from "../testcontext/authContext";
+import { useAuth } from "../hooks";
 
 export const PublicRouter = () => {
-  const { isAuthenticated } = useContext(AuthContext);
+  const { isAuthenticated } = useAuth();
 
   if (isAuthenticated) {
     return <Navigate to="/private" />;
