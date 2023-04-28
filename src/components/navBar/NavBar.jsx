@@ -26,6 +26,7 @@ export const NavBar = () => {
 
   const collapseItems = [
     { label: "Cartelera", link: "/" },
+    isAuthenticated && { label: "Admin panel", link: "/admin" },
     { label: "Aboud Us", link: "/aboudUs" },
     {
       label: !isAuthenticated && "Login",
@@ -82,6 +83,11 @@ export const NavBar = () => {
           <Link className="navbar__link" to={"/"}>
             Cartelera
           </Link>
+          {isAuthenticated && (
+            <Link className="navbar__link" to={"/admin"}>
+              Admin panel
+            </Link>
+          )}
           <Link className="navbar__link" to={"/aboudUs"}>
             Aboud Us
           </Link>

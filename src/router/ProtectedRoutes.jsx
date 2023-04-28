@@ -1,12 +1,11 @@
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { useAuth } from "../hooks";
 
-export const PrivateRouter = () => {
+export const ProtectedRoutes = ({ children }) => {
   const { isAuthenticated } = useAuth();
 
   if (!isAuthenticated) {
     return <Navigate to="/login" />;
   }
-  return <Outlet />;
+  return children;
 };
-

@@ -1,12 +1,17 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Button, Card, Grid, Input, Text } from "@nextui-org/react";
 import { useAuth } from "../hooks";
+import { Navigate } from "react-router-dom";
 
 export const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const { onLogin } = useAuth();
+  const { onLogin, isAuthenticated } = useAuth();
+
+  if (isAuthenticated) {
+    return <Navigate to="/admin" />;
+  }
 
   const handleKeyDown = (e) => {
     if (e.keyCode === 13) {

@@ -17,9 +17,9 @@ export const AppRouter = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/aboudUs" element={<AboudUs />} />
       </Route>
-      <Route path="/private" element={<PrivateRouter />}>
-        <Route path="/private" element={<AdminPage />} />
-        <Route path="/private/logout" element={<LogoutApp />} />
+      <Route element={<PrivateRouter />}>
+        <Route path="/admin" element={<AdminPage />} />
+        <Route path="/logout" element={<LogoutApp />} />
       </Route>
     </Routes>
   );
