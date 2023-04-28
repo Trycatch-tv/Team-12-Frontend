@@ -4,10 +4,10 @@ import { Layout } from "./Layout";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import Logo from "../../../public/img/logos/logo-black.webp";
+import AdministratorIcon from "../../assets/icon/AdministratorIcon";
 
 import "../nav/navBar.css";
 import "../../styles/generalStyles.css";
-import AdministratorIcon from "../../assets/icon/AdministratorIcon";
 
 export const NavBar = () => {
   const navbarToggleRef = useRef();
@@ -21,13 +21,14 @@ export const NavBar = () => {
   const handleLogout = () => {
     onLogout();
     setActiveMenu("/");
+    isSideMenuOpen && navbarToggleRef.current.click();
   };
 
   const collapseItems = [
     { label: "Cartelera", link: "/" },
     { label: "Aboud Us", link: "/aboudUs" },
     {
-      label: isAuthenticated ? <AdministratorIcon /> : "Login",
+      label: !isAuthenticated && "Login",
       link: "/login",
     },
     { label: "Cerrar sesion", link: "/#", onClick: handleLogout },
@@ -63,6 +64,7 @@ export const NavBar = () => {
           <Link className="navbar__link" to={"/"}>
             <picture className="logo">
               <img src={Logo} alt="logotipo" />
+              {isAuthenticated && <AdministratorIcon />}
             </picture>
           </Link>
         </Navbar.Brand>
@@ -85,7 +87,7 @@ export const NavBar = () => {
           </Link>
           {isAuthenticated ? (
             <>
-              <AdministratorIcon />
+              {/* <AdministratorIcon /> */}
               <Link className="navbar__link" to={"/"} onClick={onLogout}>
                 Cerrar sesión
               </Link>
