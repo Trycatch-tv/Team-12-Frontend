@@ -1,22 +1,27 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Button, Card, Grid, Input, Text } from "@nextui-org/react";
-import { AuthContext } from "../context/authContext";
+import { useAuth } from "../hooks";
+import { Navigate } from "react-router-dom";
 
 export const LoginPage = () => {
-  const { login } = useContext(AuthContext);
-
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-    const handleKeyDown = (e) => {
-      if (e.keyCode === 13) {
-        handleLogin();
-      }
-    };
+  const { onLogin, isAuthenticated } = useAuth();
+
+  if (isAuthenticated) {
+    return <Navigate to="/admin" />;
+  }
+
+  const handleKeyDown = (e) => {
+    if (e.keyCode === 13) {
+      handleLogin();
+    }
+  };
 
   const handleLogin = () => {
     if (username === "admin" && password === "team12") {
-      login();
+      onLogin();
     } else {
       alert("Credenciales incorrectas. Inténtalo de nuevo.");
     }

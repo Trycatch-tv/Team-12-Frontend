@@ -2,10 +2,12 @@ import { useRef, useState } from "react";
 import { Navbar, Button } from "@nextui-org/react";
 import { Layout } from "./Layout";
 import { Link } from "react-router-dom";
-
+import { useAuth } from "../../hooks/useAuth";
 import Logo from "../../../public/img/logos/logo-black.webp";
+import AdministratorIcon from "../../assets/icon/AdministratorIcon";
+
 import "../nav/navBar.css";
-import "../../styles/generalStyles.css"
+import "../../styles/generalStyles.css";
 
 export const NavBar = () => {
   const navbarToggleRef = useRef();
@@ -14,10 +16,23 @@ export const NavBar = () => {
     window.location.href.split(`${window.location.origin}`)[1]
   );
 
+  const { isAuthenticated, onLogout } = useAuth();
+
+  const handleLogout = () => {
+    onLogout();
+    setActiveMenu("/");
+    isSideMenuOpen && navbarToggleRef.current.click();
+  };
+
   const collapseItems = [
     { label: "Cartelera", link: "/" },
+    isAuthenticated && { label: "Admin panel", link: "/admin" },
     { label: "Aboud Us", link: "/aboudUs" },
-    { label: "Login", link: "/login" },
+    {
+      label: !isAuthenticated && "Login",
+      link: "/login",
+    },
+    { label: "Cerrar sesion", link: "/#", onClick: handleLogout },
   ];
 
   const HandleSideMenu = (link) => {
@@ -50,6 +65,7 @@ export const NavBar = () => {
           <Link className="navbar__link" to={"/"}>
             <picture className="logo">
               <img src={Logo} alt="logotipo" />
+              {isAuthenticated && <AdministratorIcon />}
             </picture>
           </Link>
         </Navbar.Brand>
@@ -67,12 +83,26 @@ export const NavBar = () => {
           <Link className="navbar__link" to={"/"}>
             Cartelera
           </Link>
+          {isAuthenticated && (
+            <Link className="navbar__link" to={"/admin"}>
+              Admin panel
+            </Link>
+          )}
           <Link className="navbar__link" to={"/aboudUs"}>
             Aboud Us
           </Link>
-          <Link className="navbar__link" to={"/login"}>
-            Login
-          </Link>
+          {isAuthenticated ? (
+            <>
+              {/* <AdministratorIcon /> */}
+              <Link className="navbar__link" to={"/"} onClick={onLogout}>
+                Cerrar sesión
+              </Link>
+            </>
+          ) : (
+            <Link className="navbar__link" to={"/login"}>
+              Login
+            </Link>
+          )}
         </Navbar.Content>
         <Navbar.Collapse>
           {collapseItems.map(({ label, link }, index) => (
@@ -84,9 +114,17 @@ export const NavBar = () => {
               }}
               isActive={link === activeMenu}
             >
-              <Link to={link} onClick={() => HandleSideMenu(link)}>
-                {label}
-              </Link>
+              {link !== "/#" ? (
+                <Link to={link} onClick={() => HandleSideMenu(link)}>
+                  {label}
+                </Link>
+              ) : (
+                isAuthenticated && (
+                  <Link to={link} onClick={handleLogout} block>
+                    {label}
+                  </Link>
+                )
+              )}
             </Navbar.CollapseItem>
           ))}
         </Navbar.Collapse>
